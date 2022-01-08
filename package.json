@@ -1,0 +1,25 @@
+{
+  "name": "spider-bug-tracker",
+  "version": "1.0.0",
+  "description": "Spider Bug Tracker is Web application for tracking the bugs during software development period. It has a clean and user-friendly GUI with great functionality.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "cd client && npm start",
+    "server": "cd server && npx nodemon server.js",
+    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clever-developer-club/spider-bug-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clever-developer-club/spider-bug-tracker/issues"
+  },
+  "homepage": "https://github.com/clever-developer-club/spider-bug-tracker#readme",
+  "dependencies": {
+  }
+}
