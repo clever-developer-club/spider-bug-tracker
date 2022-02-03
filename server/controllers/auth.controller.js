@@ -77,7 +77,7 @@ module.exports = {
 
         }
         catch(err){
-			let errMsg = getError(error)
+			let errMsg = getError(err)
             return res.status(400).json({
                 error: true,
                 message:  errMsg.length > 0 ? errMsg : "Could not create bug."

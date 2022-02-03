@@ -1,0 +1,90 @@
+.maindiv{
+    display: flex;
+    height: 100vh;
+    background-color: #dbffff;
+}
+.innerdiv {
+    display: flex;
+    flex-direction: column;
+    margin:auto;
+    width: 25%;
+    border-radius: 20px;
+    box-shadow: 5px 10px 15px gray;
+    background-color:#ffffff;
+}
+.design{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    padding: 10px;
+}
+.login-image {
+    border-radius: 40%;
+    display: flex;
+}
+.register{
+    background-color: #8ce2ff;
+    padding: 20px;
+    border-radius: 20px;
+}
+.login-button {
+    width: 150px;
+    border-radius: 30px;
+}
+label{
+    color: black;
+    font-weight: bold;
+}
+.icon-label{
+    display: flex;
+} 
+.register-form{
+    margin-top: 10px;
+}
+.register-heading{
+    color: #ffffff;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.register-login:hover{
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+span{
+    font-size: 15px;
+}
+.button-div{
+    display: flex;
+    justify-content: center;
+}
+.show-password{
+    display: flex;
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 1024px) {
+    .innerdiv{
+        border-radius: 20px;
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .innerdiv{
+        width: 100%;
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+@media only screen and (max-width: 420px) {
+    .innerdiv{
+        margin: 0px;   
+    }
+    .register{
+        padding-top: 25%;
+        border-radius: 0px;
+        height: 100%;
+    }
+}
