@@ -1,11 +1,20 @@
 import React from 'react';
 import { Provider } from 'react-redux'
 import store from './Redux/Store';
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import Login from './Auth/Login/Login';
+import Register from "./Auth/Register/Register";
+import "./CSS/Auth.css";
 
 function App() {
   return (
     <Provider store={store} >
-      <div>Hello</div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signin" element={<Login />}/>
+          <Route path="/signup" element={<Register />}/>
+        </Routes>
+      </BrowserRouter>
     </Provider>
   );
 }
