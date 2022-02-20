@@ -15,9 +15,9 @@ function App() {
         <Routes>
           <Route path="/signin" element={<Login />}/>
           <Route path="/signup" element={<Register />}/>
-          <Layout>
+          {/* <Layout> */}
             <Route path="/" element={<HomePage />}></Route>
-          </Layout>
+          {/* </Layout> */}
         </Routes>
       </BrowserRouter>
     </Provider>
