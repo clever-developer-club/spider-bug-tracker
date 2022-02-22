@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from 'react-router-dom';
@@ -54,85 +54,87 @@ const Login = () => {
             x.type = "password";
         }
     }
+    console.log(user);
 
-    if (user.jwtToken !== "") {
-        navigate("/", { replace: true });
-    } else {
-        return <>
-            <div>
-                <ToastContainer />
-                <div className="maindiv">
-                    <div className="innerdiv">
-                        <div className="register">
-                            <h3 className="register-heading text-center"></h3>
-                            <div className='login-image'>
-                                <img src={loginImage} className="m-auto login-image" height="100" width="100" />
+    useEffect(() => {
+        if (user.jwtToken !== "") {
+            navigate("/", { replace: true })
+        }
+    }, [])
+
+    return <>
+        <div>
+            <ToastContainer />
+            <div className="maindiv">
+                <div className="innerdiv">
+                    <div className="register">
+                        <h3 className="register-heading text-center"></h3>
+                        <div className='login-image'>
+                            <img src={loginImage} className="m-auto login-image" height="100" width="100" />
+                        </div>
+                        <form onSubmit={submitButton} className="register-form">
+                            <div className="form-group">
+                                <div className='icon-label'><EmailIcon /><label>Email</label></div>
+                                <input
+                                    name="email"
+                                    type="email"
+                                    placeholder="Enter Your Email"
+                                    className="form-control"
+                                    onChange={(event) => {
+                                        setEmail(event.target.value);
+                                    }}
+                                    value={email}
+                                    required
+                                />
                             </div>
-                            <form onSubmit={submitButton} className="register-form">
-                                <div className="form-group">
-                                    <div className='icon-label'><EmailIcon /><label>Email</label></div>
-                                    <input
-                                        name="email"
-                                        type="email"
-                                        placeholder="Enter Your Email"
-                                        className="form-control"
-                                        onChange={(event) => {
-                                            setEmail(event.target.value);
-                                        }}
-                                        value={email}
-                                        required
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    <div className='icon-label'><LockIcon /><label>Password</label></div>
-                                    <input
-                                        name="password"
-                                        type="password"
-                                        placeholder="Enter Your Password"
-                                        className="form-control"
-                                        onChange={(event) => {
-                                            setPassword(event.target.value);
-                                        }}
-                                        id="password"
-                                        value={password}
-                                        required
-                                    />
-                                    <div className="show-password">
-                                        <div>
-                                            <input type="checkbox" onClick={showPassword} />
-                                            <span> Show Password</span>
-                                        </div>
-                                        {/* <div className='forgot-password'>
-                                        <Link to='/forgot-password'>Forgot password ?</Link>
-                                    </div> */}
+                            <div className="form-group">
+                                <div className='icon-label'><LockIcon /><label>Password</label></div>
+                                <input
+                                    name="password"
+                                    type="password"
+                                    placeholder="Enter Your Password"
+                                    className="form-control"
+                                    onChange={(event) => {
+                                        setPassword(event.target.value);
+                                    }}
+                                    id="password"
+                                    value={password}
+                                    required
+                                />
+                                <div className="show-password">
+                                    <div>
+                                        <input type="checkbox" onClick={showPassword} />
+                                        <span> Show Password</span>
                                     </div>
+                                    {/* <div className='forgot-password'>
+                                <Link to='/forgot-password'>Forgot password ?</Link>
+                            </div> */}
                                 </div>
-                                <div className='button-div'>
-                                    <input
-                                        type="submit"
-                                        value="Login"
-                                        className="btn btn-dark mb-4 login-button"
-                                    />
-                                </div>
-                            </form>
-                            <div className='text-center'>
-                                <p>
-                                    Don't have an account ?{" "}
-                                    <Link to="/signup" className="register-login text-dark font-weight-bold">
-                                        Register
-                                    </Link>
-                                </p>
                             </div>
-                            <div className='text-center'>
-                                <a href="https://ministore-backend.herokuapp.com/api/v1/auth/google" className='font-weight-bold text-dark'> Login with Google </a>
+                            <div className='button-div'>
+                                <input
+                                    type="submit"
+                                    value="Login"
+                                    className="btn btn-dark mb-4 login-button"
+                                />
                             </div>
+                        </form>
+                        <div className='text-center'>
+                            <p>
+                                Don't have an account ?{" "}
+                                <Link to="/signup" className="register-login text-dark font-weight-bold">
+                                    Register
+                                </Link>
+                            </p>
+                        </div>
+                        <div className='text-center'>
+                            <a href="https://ministore-backend.herokuapp.com/api/v1/auth/google" className='font-weight-bold text-dark'> Login with Google </a>
                         </div>
                     </div>
                 </div>
             </div>
-        </>;
-    }
-    return 0;
+        </div>
+    </>;
 }
 
 export default Login;
