@@ -1,5 +1,4 @@
 import React,{useState} from 'react'
-import { logOut } from '../Redux/Helpers/authHelper'
 import {
   Button,
   Container,
@@ -19,7 +18,9 @@ import AddIcon from '@material-ui/icons/Add';
 
 const useStyles = makeStyles((them) => {
   return {
-    root: {},
+    root: {
+      minWidth : 650
+    },
   };
 });
 

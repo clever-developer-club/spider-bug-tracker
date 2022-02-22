@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -19,8 +19,10 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import BugReportIcon from '@material-ui/icons/BugReport';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
-import { Container } from '@material-ui/core';
 import Footer from './Footer';
+import { logOut } from '../Redux/Helpers/authHelper';
+import {useNavigate} from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 const drawerWidth = 240;
 
@@ -100,6 +102,15 @@ const Navbar = ({ children }) => {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const nevigate = useNavigate();
+    const user = useSelector((state) => state.authReducer);
+
+    useEffect(() => {
+        console.log(user);
+        if (user.jwtToken === "") {
+            nevigate("/signin", {replace : true});
+        }
+    }, [])
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -108,6 +119,11 @@ const Navbar = ({ children }) => {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const handleLogOut = () => {
+        logOut();
+        nevigate('/signin', {replace : true});
+    }
 
     return (
         <>
@@ -133,19 +149,11 @@ const Navbar = ({ children }) => {
                         Dashboard
                     </Typography>
                     <div className={classes.navbarIcons}>
-                        <IconButton
-                
-                            onClick={() => { }}
-
-                        >
+                        <IconButton>
                             <AccountCircleIcon />
                         </IconButton>
-                        <IconButton
-                
-                            onClick={() => { }}
-
-                        >
-                            <PowerSettingsNewIcon />
+                        <IconButton>
+                            <PowerSettingsNewIcon onClick={handleLogOut}/>
                         </IconButton>
                     </div>
                 </Toolbar>

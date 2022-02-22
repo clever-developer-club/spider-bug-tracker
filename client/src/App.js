@@ -9,20 +9,15 @@ import HomePage from './Components/HomePage';
 import Navbar from './Components/Navbar'
 
 function App() {
+
   return (
     <Provider store={store} >
       <BrowserRouter>
         <Routes>
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
+          <Route path="/" element={<Navbar><HomePage /></Navbar>} />
         </Routes>
-      </BrowserRouter>
-      <BrowserRouter>
-        <Navbar>
-          <Routes>
-            <Route exact path="/" element={<HomePage />}></Route>
-          </Routes>
-        </Navbar>
       </BrowserRouter>
     </Provider>
   );
