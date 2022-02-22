@@ -18,7 +18,8 @@ const authReducer = (state = initialState, action) => {
         }
 
         case type.LOG_OUT: return {
-            initialState
+            jwtToken : "",
+            user : {}
         }
 
         default: 
