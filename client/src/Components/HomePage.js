@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import {
   Button,
   Container,
@@ -15,8 +15,11 @@ import {
 } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from '@material-ui/icons/Add';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
+import {Link} from "react-router-dom"
 
-const useStyles = makeStyles((them) => {
+const useStyles = makeStyles((theme) => {
   return {
     root: {
       minWidth : 650
@@ -27,8 +30,30 @@ const useStyles = makeStyles((them) => {
 const HomePage = () => {
 
   const classes = useStyles();
+  const user = useSelector((state) => state.authReducer)
   const [page,setPage]=useState(0);
   const [row,setRow]=useState(2)
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    axios({
+      method : "GET",
+      url : `${process.env.REACT_APP_API_URL}/projects`,
+      headers : {
+        "Authorization" : `Bearer ${user.jwtToken}`
+      }
+    }).then((res) => {
+      if (!res.data.error) {
+        setProjects(res.data.data);
+        setLoading(true);
+      } else {
+        console.log(res.data.error)
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+  },[]);
 
   return (
     <>
@@ -42,25 +67,28 @@ const HomePage = () => {
                   <TableRow>
                     <TableCell>Project Name</TableCell>
                     <TableCell>Total Member</TableCell>
-                    <TableCell>Admin Name</TableCell>
                     <TableCell>Open Bugs</TableCell>
-                    <TableCell>Role</TableCell>
+                    <TableCell>Status</TableCell>
+                    <TableCell>DeadLine</TableCell>
                     <TableCell>Create Date</TableCell>
+                    <TableCell>All Details</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {/* {alluser.slice(page*row,page*row+row).map((item)=>(
+                 {loading ? projects.slice(page*row,page*row+row).map((project)=>(
                                     <TableRow>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
-                                    <TableCell></TableCell>
+                                    <TableCell>{project.name}</TableCell>
+                                    <TableCell>{project.members.length}</TableCell>
+                                    <TableCell>{project.bugs.length}</TableCell>
+                                    <TableCell>{project.status}</TableCell>
+                                    <TableCell>{project.deadline.substr(0,10)}</TableCell>
+                                    <TableCell>{project.createdAt.substr(0,10)}</TableCell>
+                                    <TableCell><Link className='btn btn-primary' to={`/project/${project._id}`}>Open</Link></TableCell>
                                 </TableRow>
-                                ))} */}
+                                )) : null }
                 </TableBody>
               </Table>
-              {/* <TablePagination rowsPerPageOptions={[2,3,5,10,15]} count={alluser.length} rowsPerPage={row} page={page} onChangePage={(event,newPage)=>setPage(newPage)} onChangeRowsPerPage={(event)=>setRow(event.target.value)}/> */}
+              <TablePagination rowsPerPageOptions={[2,3,5,10,15]} count={projects.length} rowsPerPage={row} page={page} onChangePage={(event,newPage)=>setPage(newPage)} onChangeRowsPerPage={(event)=>setRow(event.target.value)}/>
             </TableContainer>
           </Box>
         </Container>

@@ -29,6 +29,8 @@ const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        backgroundColor : "white",
+        height : '100vh'
     },
     appBar: {
         transition: theme.transitions.create(['margin', 'width'], {
@@ -198,9 +200,9 @@ const Navbar = ({ children }) => {
                 }
             </main>
         </div>
-        <div className={classes.footer}>
+        {/* <div className={classes.footer}>
             <Footer />
-        </div>
+        </div> */}
         </>
     );
 }
