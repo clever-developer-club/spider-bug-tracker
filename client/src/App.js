@@ -7,6 +7,8 @@ import Register from "./Auth/Register/Register";
 import "./CSS/Auth.css";
 import HomePage from './Components/HomePage';
 import Navbar from './Components/Navbar'
+import CreateProject from './Components/Project/CreateProject';
+import ProjectDetails from "./Components/Project/ProjectDetails";
 
 function App() {
 
@@ -17,6 +19,8 @@ function App() {
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/" element={<Navbar><HomePage /></Navbar>} />
+          <Route path="/create-project" element={<Navbar><CreateProject /></Navbar>} />
+          <Route path="/project/:id" element={<Navbar><ProjectDetails /></Navbar>} />
         </Routes>
       </BrowserRouter>
     </Provider>
