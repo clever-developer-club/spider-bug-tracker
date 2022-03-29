@@ -17,7 +17,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import AddIcon from '@material-ui/icons/Add';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import {Link} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 import clsx from 'clsx';
 
 const useStyles = makeStyles((theme) => {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => {
   };
 });
 
-const HomePage = () => {
+const ProjectList = () => {
 
   const classes = useStyles();
   const user = useSelector((state) => state.authReducer)
@@ -39,6 +39,7 @@ const HomePage = () => {
   const [row,setRow]=useState(2)
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios({
@@ -61,8 +62,8 @@ const HomePage = () => {
 
   return (
     <>
-      <Container>
-        <Link to="/projects" className={clsx("btn btn-primary")}><Button startIcon={<AddIcon />} className={classes.createProjectButton}>Create Project</Button></Link>
+    {
+        user.role === "Admin" ? <Container>
         <Container className={classes.root}>
           <Box m={4}>
             <TableContainer component={Paper}>
@@ -96,9 +97,10 @@ const HomePage = () => {
             </TableContainer>
           </Box>
         </Container>
-      </Container>
+      </Container> : <div><img /></div>
+    }
     </>
   )
 }
 
-export default HomePage
+export default ProjectList

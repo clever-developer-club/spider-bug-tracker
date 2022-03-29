@@ -124,6 +124,7 @@ BugSchema.methods = {
 	assign : function(userId){
 		this.assignedTo = userId
 		this.assignedAt = Date.now()
+		this.status = "Assigned"
 	},
 	addReply: function(commentId){
 		this.comments.push(commentId)
