@@ -13,8 +13,10 @@ import {
     Tabs,
     Tab,
     Box,
-    useTheme
+    useTheme,
 } from "@material-ui/core";
+
+
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import SwipeableViews from 'react-swipeable-views';
@@ -80,6 +82,8 @@ const ProjectDetails = () => {
     const [value, setValue] = React.useState(0);
     const theme = useTheme();
 
+    
+
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
@@ -97,6 +101,7 @@ const ProjectDetails = () => {
             }
         }).then((res) => {
             setProject(res.data.data);
+            console.log(res)
             setBugs(res.data.data.bugs);
             setLoading(true);
         }).catch((err) => {

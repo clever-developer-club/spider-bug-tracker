@@ -13,8 +13,8 @@ import { useSelector } from "react-redux";
 
 const Login = () => {
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("fkzinr@midiharmonica.com");
+    const [password, setPassword] = useState("abcd1234");
 
     const cookies = new Cookies();
     const navigate = new useNavigate();
@@ -128,7 +128,7 @@ const Login = () => {
                             </p>
                         </div>
                         <div className='text-center'>
-                            <a href="https://ministore-backend.herokuapp.com/api/v1/auth/google" className='font-weight-bold text-dark'> Login with Google </a>
+                            <a href={`${process.env.REACT_APP_API_URL}/auth/google`} className='font-weight-bold text-dark'> Login with Google </a>
                         </div>
                     </div>
                 </div>

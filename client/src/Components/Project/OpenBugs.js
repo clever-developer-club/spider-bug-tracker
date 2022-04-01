@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import {
+    Button,
     Container,
     Typography,
     Box,
@@ -19,18 +20,25 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux";
 import { filter } from "lodash";
 
+import AddIcon from '@material-ui/icons/Add';
+import {Link} from "react-router-dom"
+import clsx from 'clsx';
+
 const useStyles = makeStyles((them) => {
     return {
         root: {},
         tableHead : {
             backgroundColor : "#cbd1cc",
             fontWeight : "bold"
-        }
+        },
+        createProjectButton : {
+            color : "white"
+          },
     };
 });
 
 export default function OpenBugs(props) {
-    
+    const { id } = useParams();
     const classes = useStyles();
     const [openBugs,setOpenBugs]=useState([]);
     const [page,setPage]=useState(0);
@@ -44,6 +52,8 @@ export default function OpenBugs(props) {
     return (
         <>
             <Container className={classes.root}>
+
+            <Link to={`/bugs/${id}`} className={clsx("btn btn-primary")}><Button startIcon={<AddIcon />} className={classes.createProjectButton}>Add Bug</Button></Link>
                 <Box m={4}>
                     <TableContainer component={Paper}>
                         <Table>

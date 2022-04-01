@@ -10,6 +10,9 @@ import Navbar from './Components/Navbar'
 import CreateProject from './Components/Project/CreateProject';
 import ProjectDetails from "./Components/Project/ProjectDetails";
 import ProjectList from './Components/Admin/ProjectList';
+import CreateBug from './Components/Bugs/createBug';
+import Profile from './Components/Profile/Profile';
+import EditProfile from './Components/Profile/EditProfile';
 
 function App() {
 
@@ -20,9 +23,13 @@ function App() {
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
           <Route path="/" element={<Navbar><HomePage /></Navbar>} />
+          <Route path="/profile" element={<Navbar><Profile /></Navbar>} />
+          <Route path="/editprofile" element={<Navbar><EditProfile /></Navbar>} />
           <Route path="/projects" element={<Navbar><CreateProject /></Navbar>} />
+          <Route path="/bugs/:id" element={<Navbar><CreateBug /></Navbar>} />
           <Route path="/projects/admin" element={<Navbar><ProjectList /></Navbar>} />
           <Route path="/project/:id" element={<Navbar><ProjectDetails /></Navbar>} />
+          {/* <Route path="/project/:id/" element={<Navbar><ProjectDetails /></Navbar>} /> */}
         </Routes>
       </BrowserRouter>
     </Provider>

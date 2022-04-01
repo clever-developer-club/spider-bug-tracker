@@ -23,6 +23,7 @@ import Footer from './Footer';
 import { logOut } from '../Redux/Helpers/authHelper';
 import {useNavigate} from "react-router-dom";
 import { useSelector } from 'react-redux';
+import {Link} from "react-router-dom"
 
 const drawerWidth = 240;
 
@@ -151,9 +152,11 @@ const Navbar = ({ children }) => {
                         Dashboard
                     </Typography>
                     <div className={classes.navbarIcons}>
+                        <Link to="/profile" >
                         <IconButton>
                             <AccountCircleIcon />
                         </IconButton>
+                            </Link>
                         <IconButton>
                             <PowerSettingsNewIcon onClick={handleLogOut}/>
                         </IconButton>

@@ -10,6 +10,8 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import queryString from 'query-string';
+// import Select from '@mui/material/Select';
+import {Select,MenuItem} from "@material-ui/core";
 
 const Register = (props) => {
 
@@ -18,6 +20,11 @@ const Register = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [role,setRole]=useState("Developer");
+
+    const handleChange = (event) => {
+        setRole(event.target.value);
+      };
 
     const navigate = useNavigate();
     const user = useSelector((state) => state.authReducer);
@@ -41,7 +48,7 @@ const Register = (props) => {
                     "Content-Type": "application/json"
                 },
                 data: {
-                    name, email, password
+                    name, email, password,role
                 }
             }).then((res) => {
                 toast.success(res.data.message);
@@ -137,6 +144,19 @@ const Register = (props) => {
                                     value={confirmPassword}
                                     required
                                 />
+                            </div>
+                            <div className="form-group">
+                                <div className='icon-label'><LockIcon /><label>Role</label></div>
+                                <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={role}
+                                label="Role"
+                                onChange={handleChange}
+                                >
+                                <MenuItem value={"Vanilla"}>Vanilla</MenuItem>
+                                <MenuItem value={"Developer"}>Developer</MenuItem>
+                                </Select>
                             </div>
                             <div className='button-div'>
                                 <input
