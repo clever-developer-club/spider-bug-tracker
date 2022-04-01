@@ -125,6 +125,9 @@ export default function ProjectMembers(props) {
   const handleClickOpen = () => {
     setOpen(true);
   }
+  const handleClose2 = () => {
+    setOpen(false);
+  }
 
   const handleClose = () => {
     setOpen(false);
@@ -214,7 +217,7 @@ export default function ProjectMembers(props) {
           <Button startIcon={<AddIcon />} className={classes.createProjectButton}  onClick={handleClickOpen}>
             Add Member
           </Button>
-          <Dialog open={open} onClose={handleClose}>
+          <Dialog open={open} onClose={handleClose2}>
             <DialogTitle>Add Member</DialogTitle>
             <DialogContent>
               {/* <DialogContentText>

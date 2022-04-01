@@ -82,7 +82,7 @@ export default function AssignedBugs(props) {
             To subscribe to this website, please enter your email address here. We
             will send updates occasionally.
           </DialogContentText> */}
-          <TextField
+          {/* <TextField
             autoFocus
             margin="dense"
             id="name"
@@ -90,7 +90,8 @@ export default function AssignedBugs(props) {
             type="email"
             fullWidth
             variant="standard"
-          />
+          /> */}
+          
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Subscribe</Button>
