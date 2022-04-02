@@ -36,7 +36,7 @@ const HomePage = () => {
   const classes = useStyles();
   const user = useSelector((state) => state.authReducer)
   const [page,setPage]=useState(0);
-  const [row,setRow]=useState(2)
+  const [row,setRow]=useState(5)
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
 

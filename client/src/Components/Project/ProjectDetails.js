@@ -77,6 +77,7 @@ const ProjectDetails = () => {
     const user = useSelector((state) => state.authReducer);
     const [project, setProject] = useState();
     const [bugs, setBugs] = useState([]);
+    const [members, setMembers] = useState([]);
     const [loading, setLoading] = useState(false);  
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -103,6 +104,7 @@ const ProjectDetails = () => {
             setProject(res.data.data);
             console.log(res)
             setBugs(res.data.data.bugs);
+            setMembers(res.data.data.members)
             setLoading(true);
         }).catch((err) => {
             // console.log(err.response.state)
@@ -150,13 +152,13 @@ const ProjectDetails = () => {
                             <ProjectMembers />
                         </TabPanel>
                         <TabPanel value={value} index={1} dir={theme.direction}>
-                            <OpenBugs bugs={bugs} />
+                            <OpenBugs bugs={bugs} members={members} />
                         </TabPanel>
                         <TabPanel value={value} index={2} dir={theme.direction}>
                             <ResolveBugs bugs={bugs}/>
                         </TabPanel>
                         <TabPanel value={value} index={3} dir={theme.direction}>
-                            <AssignedBugs bugs={bugs}/>
+                            <AssignedBugs bugs={bugs} members={members}/>
                         </TabPanel>
                     </SwipeableViews>
                 </Grid>

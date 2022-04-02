@@ -11,6 +11,7 @@ import CreateProject from './Components/Project/CreateProject';
 import ProjectDetails from "./Components/Project/ProjectDetails";
 import ProjectList from './Components/Admin/ProjectList';
 import CreateBug from './Components/Bugs/createBug';
+import BugDetails from './Components/Bugs/BugDetails';
 import Profile from './Components/Profile/Profile';
 import EditProfile from './Components/Profile/EditProfile';
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/bugs/:id" element={<Navbar><CreateBug /></Navbar>} />
           <Route path="/projects/admin" element={<Navbar><ProjectList /></Navbar>} />
           <Route path="/project/:id" element={<Navbar><ProjectDetails /></Navbar>} />
+          <Route path="/project/:id/bug/:id" element={<Navbar><BugDetails /></Navbar>} />
           {/* <Route path="/project/:id/" element={<Navbar><ProjectDetails /></Navbar>} /> */}
         </Routes>
       </BrowserRouter>
