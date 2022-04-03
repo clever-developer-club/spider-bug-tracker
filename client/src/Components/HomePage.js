@@ -12,9 +12,9 @@ import {
   TableCell,
   TablePagination,
   Paper,
-  CircularProgress
+  CircularProgress,
 } from "@material-ui/core"
-import {useMainPageStyles} from '../CSS/muiStyles';
+import {useStyles} from '../CSS/muiStyles';
 import AddIcon from '@material-ui/icons/Add';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import axios from 'axios';
@@ -24,7 +24,7 @@ import clsx from 'clsx';
 
 
 const HomePage = () => {
-  const classes = useMainPageStyles();
+  const classes = useStyles();
   const user = useSelector((state) => state.authReducer)
   const [page,setPage]=useState(0);
   const [row,setRow]=useState(5)
@@ -52,10 +52,12 @@ const HomePage = () => {
 
   return (
     <>
-      <Container className={classes.projectsPaper} >
+      {loading ?
+      <Container className={classes.rootPaper} >
         <Button variant="contained" href="/projects" color="primary" className={classes.createProjectButton}>
           <AddIcon /> ADD PROJECT
         </Button>
+        
         {/* <Link to="/projects" className={clsx("btn btn-primary")}><Button startIcon={<AddIcon />} className={classes.createProjectButton}>Create Project</Button></Link> */}
         <Container className={classes.tablePaper}>
           <Box m={1}>
@@ -73,17 +75,17 @@ const HomePage = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                 {loading ? projects.slice(page*row,page*row+row).map((project)=>(
-                                    <TableRow>
-                                    <TableCell className={classes.tableBodyText}>{project.name}</TableCell>
-                                    <TableCell className={classes.tableBodyText}>{project.members.length}</TableCell>
-                                    <TableCell className={classes.tableBodyText}>{project.bugs.length}</TableCell>
-                                    <TableCell className={classes.tableBodyText}>{project.status}</TableCell>
-                                    <TableCell className={classes.tableBodyText}>{project.deadline.substr(0,10)}</TableCell>
-                                    <TableCell className={classes.tableBodyText}>{project.createdAt.substr(0,10)}</TableCell>
-                                    <TableCell className={classes.tableBodyText}><Link to={`/project/${project._id}`} className={classes.DetailsButton}><MoreHorizIcon /> </Link></TableCell>
-                                </TableRow>
-                                )) : <CircularProgress disableShrink size={80} /> }
+                {projects.slice(page*row,page*row+row).map((project)=>(
+                                <TableRow>
+                                <TableCell className={classes.tableBodyText}>{project.name}</TableCell>
+                                <TableCell className={classes.tableBodyText}>{project.members.length}</TableCell>
+                                <TableCell className={classes.tableBodyText}>{project.bugs.length}</TableCell>
+                                <TableCell className={classes.tableBodyText}>{project.status}</TableCell>
+                                <TableCell className={classes.tableBodyText}>{project.deadline.substr(0,10)}</TableCell>
+                                <TableCell className={classes.tableBodyText}>{project.createdAt.substr(0,10)}</TableCell>
+                                <TableCell className={classes.tableBodyText}><Link to={`/project/${project._id}`} className={classes.DetailsButton}><MoreHorizIcon /> </Link></TableCell>
+                            </TableRow>
+                            )) }
                 </TableBody>
               </Table>
               <TablePagination rowsPerPageOptions={[2,3,5,10,15]} count={projects.length} rowsPerPage={row} page={page} onChangePage={(event,newPage)=>setPage(newPage)} onChangeRowsPerPage={(event)=>setRow(event.target.value)}/>
@@ -91,6 +93,10 @@ const HomePage = () => {
           </Box>
         </Container>
       </Container>
+      : <div className={classes.fullPage}>
+          <CircularProgress className={classes.loader} disableShrink size={40} /> 
+        </div>
+      }
     </>
   )
 }

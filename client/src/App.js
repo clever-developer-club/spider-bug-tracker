@@ -7,7 +7,7 @@ import Register from "./Auth/Register/Register";
 import "./CSS/Auth.css";
 import HomePage from './Components/HomePage';
 import Navbar from './Components/Navbar'
-import {useMainPageStyles} from './CSS/muiStyles';
+import {useStyles} from './CSS/muiStyles';
 import CreateProject from './Components/Project/CreateProject';
 import ProjectDetails from "./Components/Project/ProjectDetails";
 import ProjectList from './Components/Admin/ProjectList';
@@ -17,7 +17,7 @@ import Profile from './Components/Profile/Profile';
 import EditProfile from './Components/Profile/EditProfile';
 
 function App() {
-  const classes = useMainPageStyles();
+  const classes = useStyles();
   
   return (
     <div >
