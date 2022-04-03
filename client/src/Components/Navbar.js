@@ -38,7 +38,10 @@ const useStyles = makeStyles((theme) => ({
             easing: theme.transitions.easing.sharp,
             duration: theme.transitions.duration.leavingScreen,
         }),
-        backgroundColor : "#42adff"
+        backgroundColor : "#54a6d6",
+        // fontFamily: "Montserrat"
+        // color: "#FFF",
+        
     },
     appBarShift: {
         width: `calc(100% - ${drawerWidth}px)`,
@@ -77,6 +80,7 @@ const useStyles = makeStyles((theme) => ({
             duration: theme.transitions.duration.leavingScreen,
         }),
         marginLeft: -drawerWidth,
+        backgroundColor: "#f0f4f7",
     },
     contentShift: {
         transition: theme.transitions.create('margin', {
@@ -115,13 +119,13 @@ const Navbar = ({ children }) => {
         }
     }, [])
 
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
+    // const handleDrawerOpen = () => {
+    //     setOpen(true);
+    // };
 
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
+    // const handleDrawerClose = () => {
+    //     setOpen(false);
+    // };
 
     const handleLogOut = () => {
         logOut();
@@ -142,7 +146,7 @@ const Navbar = ({ children }) => {
                 <Toolbar>
                     <IconButton
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
+                        // onClick={handleDrawerOpen}
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
@@ -173,7 +177,10 @@ const Navbar = ({ children }) => {
                 }}
             >
                 <div className={classes.drawerHeader}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton 
+                        disabled
+                    // onClick={handleDrawerClose}
+                    >
                         {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                     </IconButton>
                 </div>
