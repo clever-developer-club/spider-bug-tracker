@@ -46,7 +46,7 @@ const repliesPopulate = (type) => {
 	
 	let resultPopulate = {
 		path: 'replies',
-		select: 'author text likes replyCount',
+		select: 'author text likes replyCount createdAt',
 		populate: [
 			userPopulate('Author'),
 			likePopulate,
