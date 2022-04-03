@@ -190,7 +190,7 @@ export default function AssignedBugs(props) {
               <TableBody>
                 {assignedBugs.slice(page * row, page * row + row).map((bug) => (
                   <TableRow>
-                    <TableCell>{bug.title}</TableCell>
+                    <TableCell><Link to={`/project/${id}/bug/${bug._id}`}>{bug.title}</Link></TableCell>
                     <TableCell>{bug.description}</TableCell>
                     <TableCell>{bug.priority}</TableCell>
                     <TableCell>{bug.assignedTo.name}</TableCell>
