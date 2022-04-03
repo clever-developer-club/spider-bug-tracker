@@ -26,6 +26,8 @@ import clsx from 'clsx';
 const HomePage = () => {
   const classes = useStyles();
   const user = useSelector((state) => state.authReducer)
+  const bugedd = useSelector((state) => state.bugReducer)
+  console.log(bugedd)
   const [page,setPage]=useState(0);
   const [row,setRow]=useState(5)
   const [projects, setProjects] = useState([]);
