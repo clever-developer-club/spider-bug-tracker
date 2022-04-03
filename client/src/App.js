@@ -30,7 +30,7 @@ function App() {
           <Route path="/bugs/:id" element={<Navbar><CreateBug /></Navbar>} />
           <Route path="/projects/admin" element={<Navbar><ProjectList /></Navbar>} />
           <Route path="/project/:id" element={<Navbar><ProjectDetails /></Navbar>} />
-          <Route path="/project/:id/bug/:id" element={<Navbar><BugDetails /></Navbar>} />
+          <Route path="/project/:id/bug/:bid" element={<Navbar><BugDetails /></Navbar>} />
           {/* <Route path="/project/:id/" element={<Navbar><ProjectDetails /></Navbar>} /> */}
         </Routes>
       </BrowserRouter>

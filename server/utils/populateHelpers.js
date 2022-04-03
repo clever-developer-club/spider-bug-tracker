@@ -18,7 +18,7 @@ const userPopulate = (type) => {
 
 	let resultPopulate = {
 		path: '',
-		select: 'name image',
+		select: 'name email role createdAt image',
 		populate: imagePopulate()
 	}
 

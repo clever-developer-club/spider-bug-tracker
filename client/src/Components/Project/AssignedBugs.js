@@ -48,8 +48,9 @@ export default function AssignedBugs(props) {
   const classes = useStyles();
   const [assignedBugs, setAssignedBugs] = useState([]);
   const [page, setPage] = useState(0);
-  const [row, setRow] = useState(2);
+  const [row, setRow] = useState(5);
   const [member, setMember] = useState();
+  const [bugid, setBugId] = useState();
   // const [memberid, setMemberId] = useState();
   const user = useSelector((state) => state.authReducer);
 
@@ -92,6 +93,31 @@ export default function AssignedBugs(props) {
   //       toast.error(err.response.data.message);
   //     });
   // };
+  const handleResolveBug = (bug)=>{
+    setBugId(bug);
+
+    axios({
+      method: "PATCH",
+      url: `${process.env.REACT_APP_API_URL}/projects/${id}/bugs/${bugid}`,
+      headers: {
+        Authorization: `Bearer ${user.jwtToken}`,
+      },
+      data: {
+        status: 'Closed',
+      },
+    }).then((res) => {
+        if (!res.data.error) {
+          toast.success(res.data.message);
+        } else {
+           toast.error(res.data.message);
+        }
+      })
+      .catch( (err) => {
+        toast.error(err.response.data.message);
+      });
+  }
+
+
 
   useEffect(() => {
     setAssignedBugs(filter(props.bugs, { status: "Assigned" }));
@@ -169,7 +195,7 @@ export default function AssignedBugs(props) {
                     <TableCell>{bug.assignedTo.name}</TableCell>
                     <TableCell>{bug.deadline.slice(0, 10)}</TableCell>
                     <TableCell>
-                      <button className="btn btn-dark">
+                      <button key={bug._id+'7'} className="btn btn-dark" onClick={()=>handleResolveBug(bug._id)}>
                         Request To Commit
                       </button>
                     </TableCell>

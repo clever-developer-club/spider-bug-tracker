@@ -51,7 +51,7 @@ export default function OpenBugs(props) {
   const classes = useStyles();
   const [openBugs, setOpenBugs] = useState([]);
   const [page, setPage] = useState(0);
-  const [row, setRow] = useState(2);
+  const [row, setRow] = useState(5);
   const [member, setMember] = useState();
   const [bugid, setBugId] = useState();
   const user = useSelector((state) => state.authReducer);
@@ -69,6 +69,28 @@ export default function OpenBugs(props) {
   const handleCloseD = () => {
     setOpen(false);
   };
+
+  const handleDeleteBug = async (bug)=>{
+    setBugId(bug);
+
+    await axios({
+      method: "DELETE",
+      url: `${process.env.REACT_APP_API_URL}/projects/${id}/bugs/${bugid}`,
+      headers: {
+        Authorization: `Bearer ${user.jwtToken}`,
+      },
+      
+    }).then((res) => {
+        if (!res.data.error) {
+          toast.success(res.data.message);
+        } else {
+           toast.error(res.data.message);
+        }
+      })
+      .catch( (err) => {
+        toast.error(err.response.data.message);
+      });
+  }
 
   const assignBug = async (e) => {
     setOpen(false);
@@ -128,12 +150,13 @@ export default function OpenBugs(props) {
                     <b>Deadline</b>
                   </TableCell>
                   <TableCell></TableCell>
+                  <TableCell></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {openBugs.slice(page * row, page * row + row).map((bug) => (
-                  <TableRow>
-                    <TableCell>{bug.title}</TableCell>
+                  <TableRow id={bug._id}>
+                    <TableCell><Link to={`/project/${id}/bug/${bug._id}`}>{bug.title}</Link></TableCell>
                     <TableCell>{bug.description}</TableCell>
                     <TableCell>{bug.priority}</TableCell>
                     <TableCell>{bug.deadline.slice(0, 10)}</TableCell>
@@ -163,7 +186,7 @@ export default function OpenBugs(props) {
                               {props.members.map((m) => {
                                 // console.log(m);
                                 return (
-                                  <MenuItem value={m._id}>{m.name}</MenuItem>
+                                  <MenuItem id={m._id} value={m._id}>{m.name}</MenuItem>
                                 );
                               })}
                             </Select>
@@ -173,6 +196,11 @@ export default function OpenBugs(props) {
                           </DialogActions>
                         </Dialog>
                       </div>
+                    </TableCell>
+                    <TableCell>
+                    <button className="btn btn-danger" onClick={()=>handleDeleteBug(bug._id)}>
+                        Delete Bug
+                      </button>
                     </TableCell>
                   </TableRow>
                 ))}

@@ -81,7 +81,7 @@ const ProjectList = () => {
                 </TableHead>
                 <TableBody>
                  {loading ? projects.slice(page*row,page*row+row).map((project)=>(
-                                    <TableRow>
+                                    <TableRow id={project._id}>
                                     <TableCell>{project.name}</TableCell>
                                     <TableCell>{project.members.length}</TableCell>
                                     <TableCell>{project.bugs.length}</TableCell>
