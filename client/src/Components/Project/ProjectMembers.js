@@ -26,7 +26,7 @@ import {
   Input,
   MenuItem,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -34,6 +34,7 @@ import { filter } from "lodash";
 import { ToastContainer, toast } from "react-toastify";
 import AddIcon from "@material-ui/icons/Add";
 import { differenceBy } from "lodash";
+import { useProjectMemberStyles } from "../../CSS/muiStyles";
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 
@@ -55,64 +56,10 @@ function getStyles(name, personName, theme) {
   };
 }
 
-const useStyles = makeStyles((theme) => {
-  return {
-    root: {
-      backgroundColor: "white",
-    },
-    // createProjectButton : {
-    //     color : "white"
-    //   },
-    tableHead: {
-      backgroundColor: "#cbd1cc",
-      fontWeight: "bold",
-    },
-    inputField: {
-      width: "350px",
-      marginTop: "20px",
-    },
-    dateField: {
-      width: "175px",
-      marginTop: "20px",
-      marginRight: "5px",
-      marginBottom: "20px",
-    },
-    formGrid: {
-      display: "flex",
-      justifyItems: "center",
-    },
-    formContainer: {
-      display: "flex",
-      justifyContent: "center",
-    },
-    formControl: {
-      margin: theme.spacing(1),
-      minWidth: 120,
-      maxWidth: 300,
-    },
-    chips: {
-      display: "flex",
-      flexWrap: "wrap",
-    },
-    chip: {
-      margin: 2,
-    },
-    noLabel: {
-      marginTop: theme.spacing(3),
-    },
-    imageGrid: {
-      display: "flex",
-      justifyContent: "center",
-      margin: "auto",
-    },
-    projectImage: {
-      margin: "auto",
-    },
-  };
-});
+
 
 export default function ProjectMembers(props) {
-  const classes = useStyles();
+  const classes = useProjectMemberStyles();
   const { id } = useParams();
   const [project, setProject] = useState();
   const [page, setPage] = useState(0);
@@ -123,6 +70,7 @@ export default function ProjectMembers(props) {
   const [members, setMembers] = useState({ value: [], visited: false });
   const [memberId, setMemberId] = useState([]);
   const [developers, setDevelopers] = useState([]);
+
 
   const [open, setOpen] = React.useState(false);
 
@@ -222,13 +170,16 @@ export default function ProjectMembers(props) {
         {/* <Link to="/bugs" className={clsx("btn btn-primary")}><Button startIcon={<AddIcon />} className={classes.createProjectButton}>Add Bug</Button></Link> */}
 
         <div>
-          <Button
+          <Button variant="contained" onClick={handleClickOpen} color="primary" className={classes.createProjectButton}>
+            <AddIcon /> ADD MEMBER
+          </Button>
+          {/* <Button
             startIcon={<AddIcon />}
             className={classes.createProjectButton}
             onClick={handleClickOpen}
           >
             Add Member
-          </Button>
+          </Button> */}
           <Dialog open={open} onClose={handleClose2}>
             <DialogTitle>Add Member</DialogTitle>
             <DialogContent>

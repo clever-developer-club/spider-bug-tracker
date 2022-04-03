@@ -14,7 +14,8 @@ import {
   Tab,
   Box,
   useTheme,
-  CircularProgress
+  CircularProgress,
+  Button,
 } from "@material-ui/core";
 
 import clsx from "clsx";
@@ -24,19 +25,10 @@ import ProjectMembers from "./ProjectMembers";
 import OpenBugs from "./OpenBugs";
 import AssignedBugs from "./AssignedBugs";
 import ResolveBugs from "./ResolveBugs";
+import {useStyles} from '../../CSS/muiStyles';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: "20px",
-  },
-  menu: {
-    marginTop: "80px",
-  },
-  menuItem: {
-    textDecoration: "none",
-    color: "black",
-  },
-}));
+
 
 const TabPanel = (props) => {
   const { children, value, index, ...other } = props;
@@ -115,32 +107,44 @@ const ProjectDetails = () => {
     <>
       <ToastContainer />
       {loading ? (
-        <Container className={classes.root}>
-          <Grid container>
-            <Grid item xs={12} lg={12}>
-              <Grid container>
-                <Grid item xs={12} sm={10} md={10} lg={10}>
-                  <Typography variant="h4">
-                    Project Name : {project.name}
+        <Container >
+          <Container className={classes.rootPaper}>
+            <Grid container>
+              <Grid item xs={12} lg={12}>
+                <Grid container>
+                  <Grid item xs={12} sm={10} md={10} lg={10}>
+                    <Typography variant="h4" className={classes.title}>
+                      {project.name}
+                    </Typography>
+                  </Grid>
+
+                  {/* <Grid item lg={2}> */}
+                    <Button variant="outlined" href="/" color="primary" className={classes.exitProjectButton}>
+                      <ExitToAppIcon className={classes.exitIcon} /> &nbsp;Home
+                    </Button>
+                  {/* </Grid> */}
+                </Grid>
+              </Grid>
+              
+              {/* <Divider varient="middle" className={classes.divider}/> */}
+              
+
+              <Grid item xs={12} lg={12} className={classes.details}>
+                {/* <Grid item xs={12} sm={10} md={10} lg={10}> */}
+                  <Typography variant="p" >Client : {project.client}</Typography>
+                  <br />
+                  <Typography variant="p" >
+                    Description : {project.description}
                   </Typography>
-                </Grid>
-                <Grid item xs={12} sm={2} md={2} lg={2}>
-                  <Link to="/" className="btn btn-primary">
-                    Exit Project
-                  </Link>
-                </Grid>
+                {/* </Grid> */}
               </Grid>
             </Grid>
-            <Grid item xs={12} lg={12}>
-              <Grid item xs={12} sm={10} md={10} lg={10}>
-                <Typography variant="h6">Client : {project.client}</Typography>
-                <Typography variant="h6">
-                  Description : {project.description}
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item xs={12} lg={12} className={classes.menu}>
-              <AppBar position="static" color="default">
+          </Container>
+            
+          <Container className={classes.DetailsPaper}>
+            {/* <Grid container> */}
+            {/* <div className={classes.menu}> */}
+              <AppBar position="static" color="default" elevation={0} className={classes.detailsAppbar}>
                 <Tabs
                   value={value}
                   onChange={handleChange}
@@ -173,12 +177,14 @@ const ProjectDetails = () => {
                   <AssignedBugs bugs={bugs} members={members} />
                 </TabPanel>
               </SwipeableViews>
-            </Grid>
-          </Grid>
+            {/* </div> */}
+          {/* </Grid> */}
         </Container>
-      ) : (
-        <CircularProgress disableShrink size={80} />
-      )}
+        </Container>
+      ) : <div className={classes.fullPage}>
+          <CircularProgress className={classes.loader} disableShrink size={40} /> 
+        </div>
+      }
     </>
   );
 };
