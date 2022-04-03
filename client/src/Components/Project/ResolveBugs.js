@@ -18,6 +18,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { filter } from "lodash";
+import { Link } from "react-router-dom";
+
 
 const useStyles = makeStyles((them) => {
   return {
@@ -30,6 +32,7 @@ const useStyles = makeStyles((them) => {
 });
 
 export default function ResolveBugs(props) {
+  const { id } = useParams();
   const classes = useStyles();
   const [resolveBugs, setResolveBugs] = useState([]);
   const [page, setPage] = useState(0);
@@ -69,7 +72,7 @@ export default function ResolveBugs(props) {
               <TableBody>
                 {resolveBugs.slice(page * row, page * row + row).map((bug) => (
                   <TableRow id={bug._id}>
-                    <TableCell>{bug.title}</TableCell>
+                    <TableCell><Link to={`/project/${id}/bug/${bug._id}`}>{bug.title}</Link></TableCell>
                     <TableCell>{bug.description}</TableCell>
                     <TableCell>{bug.priority}</TableCell>
                     <TableCell>{bug.assignedTo.name}</TableCell>
