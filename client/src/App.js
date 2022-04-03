@@ -7,6 +7,7 @@ import Register from "./Auth/Register/Register";
 import "./CSS/Auth.css";
 import HomePage from './Components/HomePage';
 import Navbar from './Components/Navbar'
+import {useMainPageStyles} from './CSS/muiStyles';
 import CreateProject from './Components/Project/CreateProject';
 import ProjectDetails from "./Components/Project/ProjectDetails";
 import ProjectList from './Components/Admin/ProjectList';
@@ -16,14 +17,17 @@ import Profile from './Components/Profile/Profile';
 import EditProfile from './Components/Profile/EditProfile';
 
 function App() {
-
+  const classes = useMainPageStyles();
+  
   return (
+    <div >
     <Provider store={store} >
       <BrowserRouter>
+        
         <Routes>
           <Route path="/signin" element={<Login />} />
           <Route path="/signup" element={<Register />} />
-          <Route path="/" element={<Navbar><HomePage /></Navbar>} />
+          <Route path="/" element={<Navbar><HomePage/></Navbar>} />
           <Route path="/profile" element={<Navbar><Profile /></Navbar>} />
           <Route path="/editprofile" element={<Navbar><EditProfile /></Navbar>} />
           <Route path="/projects" element={<Navbar><CreateProject /></Navbar>} />
@@ -33,8 +37,10 @@ function App() {
           <Route path="/project/:id/bug/:bid" element={<Navbar><BugDetails /></Navbar>} />
           {/* <Route path="/project/:id/" element={<Navbar><ProjectDetails /></Navbar>} /> */}
         </Routes>
+        
       </BrowserRouter>
     </Provider>
+    </div>
   );
 }
 
