@@ -141,9 +141,10 @@ const ProjectDetails = () => {
             </Grid>
           </Container>
             
-            <Grid container>
-            <Grid item xs={12} lg={12} className={classes.menu}>
-              <AppBar position="static" color="default">
+          <Container className={classes.DetailsPaper}>
+            {/* <Grid container> */}
+            {/* <div className={classes.menu}> */}
+              <AppBar position="static" color="default" elevation={0} className={classes.detailsAppbar}>
                 <Tabs
                   value={value}
                   onChange={handleChange}
@@ -176,8 +177,9 @@ const ProjectDetails = () => {
                   <AssignedBugs bugs={bugs} members={members} />
                 </TabPanel>
               </SwipeableViews>
-            </Grid>
-          </Grid>
+            {/* </div> */}
+          {/* </Grid> */}
+        </Container>
         </Container>
       ) : <div className={classes.fullPage}>
           <CircularProgress className={classes.loader} disableShrink size={40} /> 
