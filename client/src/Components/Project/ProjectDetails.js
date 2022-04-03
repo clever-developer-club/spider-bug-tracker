@@ -14,6 +14,7 @@ import {
   Tab,
   Box,
   useTheme,
+  CircularProgress
 } from "@material-ui/core";
 
 import clsx from "clsx";
@@ -176,7 +177,7 @@ const ProjectDetails = () => {
           </Grid>
         </Container>
       ) : (
-        "Loading"
+        <CircularProgress disableShrink size={80} />
       )}
     </>
   );

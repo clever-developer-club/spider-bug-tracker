@@ -14,6 +14,7 @@ import {
     Tab,
     Box,
     useTheme,
+    CircularProgress
 } from "@material-ui/core";
 
 
@@ -77,7 +78,7 @@ const BugDetails = () => {
     const user = useSelector((state) => state.authReducer);
     // const [project, setProject] = useState();
     const [bug, setBug] = useState([]);
-    const [members, setMembers] = useState([]);
+    const [members, setMembers] = useState({});
     const [loading, setLoading] = useState(false);  
     const classes = useStyles();
     const [value, setValue] = React.useState(0);
@@ -119,25 +120,25 @@ const BugDetails = () => {
             loading ?
              <Container className={classes.root}>
                  
-                 {/* <Grid container> */}
-                {/* <Grid item xs={12} lg={12} >
+                 <Grid container>
+                <Grid item xs={12} lg={12} >
                     <Grid container>
                         <Grid item xs={12} sm={10} md={10} lg={10}>
-                            <Typography variant='h4'>Project Name : {project.name}</Typography>
+                            <Typography variant='h4'>Bug Title : {bug.title}</Typography>
                         </Grid>
                         <Grid item xs={12} sm={2} md={2} lg={2}>
-                            <Link to="/" className="btn btn-primary">Exit Project</Link>
+                            <Link to={`/project/${id}`} className="btn btn-primary">Exit</Link>
                         </Grid>
                         
                     </Grid>
                 </Grid> 
                 <Grid item xs={12} lg={12} >
                         <Grid item xs={12} sm={10} md={10} lg={10}>
-                            <Typography variant='h6'>Client : {project.client}</Typography>
-                            <Typography variant='h6'>Description : {project.description}</Typography>
+                            <Typography variant='h6'>Priority : {bug.priority}</Typography>
+                            <Typography variant='h6'>Description : {bug.description}</Typography>
                         </Grid>
                 </Grid>
-                <Grid item xs={12} lg={12} className={classes.menu}>
+                {/* <Grid item xs={12} lg={12} className={classes.menu}>
                     <AppBar position="static" color="default">
                     <Tabs
                     value={value}
@@ -171,9 +172,9 @@ const BugDetails = () => {
                             <AssignedBugs bugs={bugs} members={members}/>
                         </TabPanel>
                     </SwipeableViews>
-                </Grid>
-            </Grid> */}
-            </Container> : "Loading" 
+                </Grid> */}
+            </Grid>
+            </Container> : <CircularProgress disableShrink size={80} /> 
         }
     </>
   )

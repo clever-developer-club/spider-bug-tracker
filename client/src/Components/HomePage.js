@@ -11,7 +11,8 @@ import {
   TableRow,
   TableCell,
   TablePagination,
-  Paper
+  Paper,
+  CircularProgress
 } from "@material-ui/core"
 import {useMainPageStyles} from '../CSS/muiStyles';
 import AddIcon from '@material-ui/icons/Add';
@@ -82,7 +83,7 @@ const HomePage = () => {
                                     <TableCell className={classes.tableBodyText}>{project.createdAt.substr(0,10)}</TableCell>
                                     <TableCell className={classes.tableBodyText}><Link to={`/project/${project._id}`} className={classes.DetailsButton}><MoreHorizIcon /> </Link></TableCell>
                                 </TableRow>
-                                )) : null }
+                                )) : <CircularProgress disableShrink size={80} /> }
                 </TableBody>
               </Table>
               <TablePagination rowsPerPageOptions={[2,3,5,10,15]} count={projects.length} rowsPerPage={row} page={page} onChangePage={(event,newPage)=>setPage(newPage)} onChangeRowsPerPage={(event)=>setRow(event.target.value)}/>

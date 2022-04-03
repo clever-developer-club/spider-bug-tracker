@@ -51,6 +51,7 @@ export default function AssignedBugs(props) {
   const [row, setRow] = useState(5);
   const [member, setMember] = useState();
   const [bugid, setBugId] = useState();
+  
   // const [memberid, setMemberId] = useState();
   const user = useSelector((state) => state.authReducer);
 
