@@ -224,7 +224,7 @@ module.exports = {
 			bug.assign(req.body.user)			
 			await bug.save()
 
-			let link = `${frontEndURL}/project/${res.locals.project._id}/bugs/${bug._id}`
+			let link = `${frontEndURL}/project/${res.locals.project._id}/bug/${bug._id}`
 			await sendAssignBugEmail({
 				user : user.name,
 				email : user.email
