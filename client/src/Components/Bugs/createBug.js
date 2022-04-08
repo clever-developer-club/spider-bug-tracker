@@ -25,6 +25,7 @@ import {
 } from "@material-ui/pickers";
 import ProjectImage from "../../Assets/Images/CreateProject.jpg";
 import { Link, useParams } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -92,6 +93,7 @@ const CreateBug = () => {
   // const [developers, setDevelopers] = useState([]);
   //const [Loading, setLoading] = useState(false);
   const theme = useTheme();
+  const nevigate = useNavigate();
   const handlePriorityChange = (e) =>{
     setPriority(e.target.value)
 }
@@ -138,6 +140,7 @@ const CreateBug = () => {
       .then((res) => {
         if (!res.data.error) {
           toast.success(res.data.message);
+          nevigate(`/project/${id}`, {replace : true}); 
         } else {
           toast.error(res.data.message);
         }

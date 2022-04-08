@@ -162,7 +162,7 @@ export default function ProjectMembers(props) {
         console.log(err);
       });
     // let array = filter(project.bugs, { assignedTO : { name  : "Test34"} });
-  }, []);
+  }, [developers]);
 
   return (
     <>
@@ -257,7 +257,7 @@ export default function ProjectMembers(props) {
               </TableHead>
               <TableBody>
                 {loading
-                  ? project.members
+                  ? props.members
                       .slice(page * row, page * row + row)
                       .map((member) => (
                         <TableRow id={member._id}>

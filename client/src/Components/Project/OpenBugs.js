@@ -24,7 +24,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { filter } from "lodash";
 
 import AddIcon from "@material-ui/icons/Add";
@@ -32,7 +32,7 @@ import { Link } from "react-router-dom";
 import clsx from "clsx";
 import AssignmentInd from "@material-ui/icons/AssignmentInd";
 import { ToastContainer, toast } from "react-toastify";
-
+import bugAction from '../../Redux/Actions/bugAction'
 const useStyles = makeStyles((them) => {
   return {
     root: {},
@@ -48,6 +48,7 @@ const useStyles = makeStyles((them) => {
 
 export default function OpenBugs(props) {
   const { id } = useParams();
+  const dispatch=useDispatch()
   const classes = useStyles();
   const [openBugs, setOpenBugs] = useState([]);
   const [page, setPage] = useState(0);
@@ -119,8 +120,9 @@ export default function OpenBugs(props) {
   };
 
   useEffect(() => {
+    dispatch(bugAction.setBUG(props.bugs))
     setOpenBugs(filter(props.bugs, { status: "Open" }));
-  }, [openBugs]);
+  }, []);
 
   return (
     <>

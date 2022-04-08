@@ -31,28 +31,28 @@ export const setBUG = (bugs) => {
 //     saveCart()
 // }
 
-// export const removeBUG = (bugId) => {
-//     let bug = getBug().bugs.find(bug => bug._id === bugId)
-//     if(bug === undefined) return
-//     let payload = {
-//         id : bugId,
-//         // amount : (product.price)*(product.quantity)
-//     }
-//     store.dispatch(actions.removeBUG(payload))
-//     saveBug()
-// }
+export const removeBUG = (bugId) => {
+    let bug = getBug().bugs.find(bug => bug._id === bugId)
+    if(bug === undefined) return
+    let payload = {
+        id : bugId,
+        // amount : (product.price)*(product.quantity)
+    }
+    store.dispatch(actions.removeBUG(payload))
+    saveBug()
+}
 
-// export const updateBUG = (bugID,status) => {
-//     let bug = getBug().bugs.find(bug => bug._id === bugId)
-//     if(bug === undefined) return
-//     let payload = {
-//         id : productId,
-//         status,
-//         // amount: (quantity - product.quantity)*product.price
-//     }
-//     store.dispatch(actions.updateBUG(payload))
-//     saveBug()
-// }
+export const updateBUG = (bugID,status) => {
+    let bug = getBug().bugs.find(bug => bug._id === bugId)
+    if(bug === undefined) return
+    let payload = {
+        id : productId,
+        status,
+        // amount: (quantity - product.quantity)*product.price
+    }
+    store.dispatch(actions.updateBUG(payload))
+    saveBug()
+}
 
 // export const clearCart = () => {
 //     store.dispatch(actions.clearCart())

@@ -131,6 +131,7 @@ const BugDetails = () => {
 
   const handleComment = async (e) => {
     e.preventDefault();
+    setOpen(false);
     console.log(message);
     await axios({
       method: "POST",
@@ -174,7 +175,7 @@ const BugDetails = () => {
         // console.log(err.response.state)
         toast.error(err.response.statusText);
       });
-  }, []);
+  }, [bug]);
 
   return (
     <>

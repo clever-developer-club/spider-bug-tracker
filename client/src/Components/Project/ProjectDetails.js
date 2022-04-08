@@ -101,7 +101,7 @@ const ProjectDetails = () => {
         // console.log(err.response.state)
         toast.error(err.response.statusText);
       });
-  }, [bugs]);
+  }, [bugs,members]);
 
   return (
     <>

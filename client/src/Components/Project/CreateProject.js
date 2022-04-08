@@ -24,6 +24,7 @@ import {
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import ProjectImage from '../../Assets/Images/CreateProject.jpg';
+import {useNavigate} from "react-router-dom";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -98,6 +99,7 @@ const CreateProject = () => {
 
     const user = useSelector((state) => state.authReducer);
     const classes = useStyles();
+    const nevigate = useNavigate();
     
     const [projectName, setProjectName] = useState({value : "", visited : false});
     const [clientName, setClientName] = useState({value : "", visited : false});
@@ -159,7 +161,8 @@ const CreateProject = () => {
             }
         }).then((res) => {
             if (!res.data.error) {
-                toast.success(res.data.message);    
+                toast.success(res.data.message)  
+                nevigate("/", {replace : true});  
             } else {
                 toast.error(res.data.message);
             }
