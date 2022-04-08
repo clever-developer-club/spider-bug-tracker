@@ -13,15 +13,15 @@ import { makeStyles } from "@material-ui/core";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import EmailIcon from "@material-ui/icons/Email";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import EditIcon from "@material-ui/icons/Edit";
 import { Link } from "react-router-dom";
-import { getUser } from "../../Redux/Helpers/authHelper";
 import { useEffect } from "react";
 import axios from "axios";
+import GitHubIcon from '@material-ui/icons/GitHub';
+import PhoneIcon from '@material-ui/icons/Phone';
 // import logo from "../../assets/shopping.gif";
 // import { useHistory } from "react-router-dom";
 
@@ -50,16 +50,17 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     color: "#8a8a8a",
     margin: "10px",
-    justifyContent: "center",
+    justifyContent: "left",
+    fontFamily: "Georgia, serif",
+    fontSize : "16px",
   },
   editButton: {
     display: "flex",
     alignItems: "center",
-    // margin: "10px",
     justifyContent: "center",
   },
   card: {
-    width: theme.spacing(45),
+    width: theme.spacing(50),
     boxShadow: "5px 10px 15px gray",
   },
   cardDiv: {
@@ -80,10 +81,9 @@ const useStyles = makeStyles((theme) => ({
 const Profile = () => {
   const classes = useStyles();
   const user = useSelector((state) => state.authReducer);
-  console.log(getUser());
   const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(false);
-//   const history = useHistory();
+
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/auth/user`, {
@@ -92,7 +92,7 @@ const Profile = () => {
         },
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res.data.data);
         setUserData(res.data.data);
         setLoading(true);
       })
@@ -101,7 +101,6 @@ const Profile = () => {
       });
   }, []);
 
-//   if (user.jwtToken !== "") {
     return (
       <div className={classes.body}>
         <Container className={classes.root}>
@@ -110,9 +109,9 @@ const Profile = () => {
               <CardActionArea className={classes.imgDiv}>
                 {loading ? (
                   <Avatar
-                    alt="Remy Sharp"
-                    src={userData.image?userData.image.url:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
                     alt="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    src={userData.image?userData.image.url:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+                    // alt="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                     className={classes.large}
                   />
                 ) : (
@@ -121,46 +120,24 @@ const Profile = () => {
               </CardActionArea>
               <Divider />
               <CardContent className={classes.cardContent}>
-                <Typography variant="h5" className={classes.name}>
-                  {user.user.name}
+                <Typography variant="h4" className={classes.name}>
+                  {userData.name}
+                </Typography>
+                <Typography variant="h6" className={classes.name}>
+                  {userData.role}
                 </Typography>
                 <div className={classes.email}>
                   <EmailIcon style={{ marginRight: "10px" }} />
-                  <Typography variant="h6" className={classes.cardText}>
-                    {user.user.email}
-                  </Typography>
+                    {userData.email}
                 </div>
-                {/* {user.user.addresses[user.user.addresses.length - 1]?
-                (<div className={classes.email}>
-                  <LocationOnIcon style={{ marginRight: "10px" }} />
-                  <Typography variant="h6" className={classes.cardText}>
-                    {
-                      user.user.addresses[user.user.addresses.length - 1]
-                        .location
-                    }
-                    ,
-                    {
-                      user.user.addresses[user.user.addresses.length - 1]
-                        .landmark
-                    }
-                    ,{user.user.addresses[user.user.addresses.length - 1].city},{" "}
-                    {user.user.addresses[user.user.addresses.length - 1].state},
-                    {
-                      user.user.addresses[user.user.addresses.length - 1]
-                        .pincode
-                    }
-                  </Typography>
-                </div>)
-                :
-                (
-                  <div className={classes.email}>
-                  <LocationOnIcon style={{ marginRight: "10px" }} />
-                  <Typography variant="h6" className={classes.cardText}>
-                    Add your Address
-                  </Typography>
+                <div className={classes.email}>
+                  <GitHubIcon style={{ marginRight: "10px" }} />
+                    {userData.githubUserName}
                 </div>
-                )
-                } */}
+                <div className={classes.email}>
+                  <PhoneIcon style={{ marginRight: "10px" }} />
+                    {userData.phone}
+                </div>
                 <div className={classes.editButton}>
                   <Link to="/edit/profile" style={{ width: "100%" }}>
                     <Button variant="contained" color="primary" fullWidth>
@@ -175,10 +152,6 @@ const Profile = () => {
         </Container>
       </div>
     );
-//   } else {
-//     // history.push("/signin");
-//   }
-  return 0;
 };
 
 export default Profile;
