@@ -75,7 +75,7 @@ export default function AssignedBugs(props) {
 
   useEffect(() => {
     setAssignedBugs(filter(props.bugs, { status: "Assigned" }));
-  }, []);
+  }, [assignedBugs]);
 
   return (
     <>

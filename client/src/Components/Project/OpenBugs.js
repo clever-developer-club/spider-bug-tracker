@@ -45,7 +45,8 @@ export default function OpenBugs(props) {
   const [member, setMember] = useState();
   const [bugid, setBugId] = useState();
   const user = useSelector((state) => state.authReducer);
-
+  const bugedd = useSelector((state) => state.bugReducer)
+  console.log(bugedd)
   const [open, setOpen] = React.useState(false);
   const handleMemberChange = (e) => {
     setMember(e.target.value);
@@ -109,7 +110,7 @@ export default function OpenBugs(props) {
 
   useEffect(() => {
     setOpenBugs(filter(props.bugs, { status: "Open" }));
-  }, []);
+  }, [openBugs]);
 
   return (
     <>

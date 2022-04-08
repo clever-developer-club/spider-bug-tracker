@@ -92,7 +92,7 @@ const ProjectDetails = () => {
     })
       .then((res) => {
         setProject(res.data.data);
-        console.log(res);
+        // console.log(res);
         setBugs(res.data.data.bugs);
         setMembers(res.data.data.members);
         setLoading(true);
@@ -101,7 +101,7 @@ const ProjectDetails = () => {
         // console.log(err.response.state)
         toast.error(err.response.statusText);
       });
-  }, []);
+  }, [bugs]);
 
   return (
     <>

@@ -33,7 +33,7 @@ export default function ResolveBugs(props) {
 
   useEffect(() => {
     setResolveBugs(filter(props.bugs, { status: "Closed" }));
-  }, []);
+  }, [resolveBugs]);
   // console.log(resolveBugs)
 
   return (
