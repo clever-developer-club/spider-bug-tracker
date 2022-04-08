@@ -123,6 +123,7 @@ export const useProjectMemberStyles = makeStyles(
         root: {
             backgroundColor: "white",
         },
+        
         // createProjectButton : {
         //     color : "white"
         //   },
@@ -180,6 +181,202 @@ export const useProjectMemberStyles = makeStyles(
                 backgroundColor: "#1c688a",
             }
         },
+        tablePaper: {
+            padding: '0 0 0 0',
+            // textAlign: 'center',
+
+            // backgroundColor: '#fff',
+        }, 
+        tableHeader: {
+            backgroundColor: '#d2eefc',
+            color: "#063852",
+            fontWeight: "bold",
+            textAlign: 'center',
+        },
+        tableBodyText: {
+            // color: "black",
+            textAlign: 'center',
+        },
+        requestCommitButton: {
+            color : "white",
+            // margin: "1.5em 0.6em 0 ",
+            backgroundColor: "#2d91bd",
+            "&:hover": {
+                color : "white",
+                backgroundColor: "#1c688a",
+            }
+        },
+    }),
+    { index: 1 } 
+);
+
+export const useFormStyles = makeStyles(
+    (theme) => ({
+        root: {
+            padding: '1em 0',
+            [theme.breakpoints.down('xs')]: {
+                padding: '0.5em 0.5em',
+            },
+            // backgroundColor: '#000',
+        
+        }, 
+        rootPaper: {
+            padding: '1.5em',
+            // margin: '0 4em',
+            boxShadow: '1px 1px 2px 1px rgba(0, 0, 0, 0.24)',
+            borderRadius: 5,
+            backgroundColor: '#fff',
+            [theme.breakpoints.down('xs')]: {
+              padding: '0.7em 0.3em',
+              margin: '0 0.5em',
+            },
+        },
+        
+        tablePaper: {
+            padding: '1em 0',
+            // textAlign: 'center',
+
+            // backgroundColor: '#fff',
+        }, 
+        tableHeader: {
+            backgroundColor: '#d2eefc',
+            color: "#063852",
+            fontWeight: "bold",
+            textAlign: 'center',
+        },
+        tableBodyText: {
+
+            textAlign: 'center',
+        },
+        createProjectButton : {
+            color : "white",
+            margin: "1em 0.6em 0 ",
+            backgroundColor: "#2d91bd",
+            "&:hover": {
+                color : "white",
+                backgroundColor: "#1c688a",
+            }
+        },
+       
+        inputField: {
+            width: "350px",
+            marginTop: "20px"
+        },
+        dateField: {
+            width: "175px",
+            marginTop: "20px",
+            marginRight: "5px",
+            marginBottom: "20px"
+        },
+        formGrid: {
+            display: "flex",
+            justifyItems: "center",
+        },
+        formContainer: {
+            display: "flex",
+            justifyContent: "center",
+        },
+        formControl: {
+            margin: theme.spacing(1),
+            minWidth: 120,
+            maxWidth: 300,
+        },
+        chips: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        },
+        chip: {
+        margin: 2,
+        },
+        noLabel: {
+        marginTop: theme.spacing(3),
+        },
+        imageGrid: {
+        display : "flex",
+        justifyContent : "center",
+        margin : "auto"
+        },
+        projectImage : {
+            margin : "auto"
+        },
+        formFilled: {
+            // display: "flex",
+            // margin: "auto",
+            // padding: "auto",
+            // width: '100%',
+        },
+        
+    }),
+    { index: 1 } 
+);
+
+export const useBugDetailsStyles = makeStyles(
+    (theme) => ({
+        root: {
+            padding: '1em 0',
+            [theme.breakpoints.down('xs')]: {
+                padding: '0.5em 0.5em',
+            },
+            // backgroundColor: '#000',
+        
+        }, 
+        rootPaper: {
+            padding: '1.5em',
+            // margin: '0 4em',
+            boxShadow: '1px 1px 2px 1px rgba(0, 0, 0, 0.24)',
+            borderRadius: 5,
+            backgroundColor: '#fff',
+            [theme.breakpoints.down('xs')]: {
+              padding: '0.7em 0.3em',
+              margin: '0 0.5em',
+            },
+        },
+        
+        tablePaper: {
+            padding: '1em 0',
+            // textAlign: 'center',
+
+            // backgroundColor: '#fff',
+        }, 
+        tableHeader: {
+            backgroundColor: '#d2eefc',
+            color: "#063852",
+            fontWeight: "bold",
+            textAlign: 'center',
+        },
+        tableBodyText: {
+
+            textAlign: 'center',
+        },
+        createProjectButton : {
+            color : "white",
+            margin: "1em 0.6em 0 ",
+            backgroundColor: "#2d91bd",
+            "&:hover": {
+                color : "white",
+                backgroundColor: "#1c688a",
+            }
+        },
+        menu: {
+            marginTop: "80px",
+          },
+          menuItem: {
+            textDecoration: "none",
+            color: "black",
+          },
+          headerPaper: {
+            // padding: '0.8em 1.5em',
+            marginBottom: "1em",
+            // display: 'flex',
+            alignItems: "center",
+          },
+          second: {
+            // padding: '0.8em 1.5em',
+            marginTop: "2em",
+            // display: 'flex',
+            // alignItems: 'center',
+          },
+        
     }),
     { index: 1 } 
 );

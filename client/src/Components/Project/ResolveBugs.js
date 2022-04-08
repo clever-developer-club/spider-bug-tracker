@@ -13,7 +13,7 @@ import {
   TablePagination,
   Paper,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { useProjectMemberStyles } from "../../CSS/muiStyles";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -21,19 +21,11 @@ import { filter } from "lodash";
 import { Link } from "react-router-dom";
 
 
-const useStyles = makeStyles((them) => {
-  return {
-    root: {},
-    tableHead: {
-      backgroundColor: "#cbd1cc",
-      fontWeight: "bold",
-    },
-  };
-});
 
 export default function ResolveBugs(props) {
   const { id } = useParams();
-  const classes = useStyles();
+  const classes = useProjectMemberStyles();
+  // const classes = useStyles();
   const [resolveBugs, setResolveBugs] = useState([]);
   const [page, setPage] = useState(0);
   const [row, setRow] = useState(5);
@@ -46,25 +38,25 @@ export default function ResolveBugs(props) {
 
   return (
     <>
-      <Container className={classes.root}>
-        <Box m={4}>
-          <TableContainer component={Paper}>
+      <Container className={classes.tablePaper}>
+          <Box m={4}>
+          <TableContainer component={Paper} >
             <Table>
-              <TableHead className={classes.tableHead}>
+              <TableHead >
                 <TableRow>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Bug Title</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Bug Description</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Priority</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Resolved By</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Deadline</b>
                   </TableCell>
                 </TableRow>
@@ -72,11 +64,11 @@ export default function ResolveBugs(props) {
               <TableBody>
                 {resolveBugs.slice(page * row, page * row + row).map((bug) => (
                   <TableRow id={bug._id}>
-                    <TableCell><Link to={`/project/${id}/bug/${bug._id}`}>{bug.title}</Link></TableCell>
-                    <TableCell>{bug.description}</TableCell>
-                    <TableCell>{bug.priority}</TableCell>
-                    <TableCell>{bug.assignedTo.name}</TableCell>
-                    <TableCell>{bug.deadline.slice(0, 10)}</TableCell>
+                    <TableCell className={classes.tableBodyText}><Link to={`/project/${id}/bug/${bug._id}`}>{bug.title}</Link></TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.description}</TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.priority}</TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.assignedTo.name}</TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.deadline.slice(0, 10)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

@@ -22,9 +22,10 @@ import {
   Select,
   MenuItem
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import { useProjectMemberStyles } from "../../CSS/muiStyles";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import AddIcon from "@material-ui/icons/Add";
 import { useSelector } from "react-redux";
 import { filter } from "lodash";
 import { Link } from "react-router-dom";
@@ -33,19 +34,10 @@ import clsx from "clsx";
 import AssignmentInd from "@material-ui/icons/AssignmentInd";
 import { ToastContainer, toast } from "react-toastify";
 
-const useStyles = makeStyles((theme) => {
-  return {
-    root: {},
-    tableHead: {
-      backgroundColor: "#cbd1cc",
-      fontWeight: "bold",
-    },
-  };
-});
-
 export default function AssignedBugs(props) {
   const { id } = useParams();
-  const classes = useStyles();
+  // const classes = useStyles();
+  const classes = useProjectMemberStyles();
   const [assignedBugs, setAssignedBugs] = useState([]);
   const [page, setPage] = useState(0);
   const [row, setRow] = useState(5);
@@ -55,45 +47,6 @@ export default function AssignedBugs(props) {
   // const [memberid, setMemberId] = useState();
   const user = useSelector((state) => state.authReducer);
 
-  // const [open, setOpen] = React.useState(false);
-  // console.log(props.members)
-  // const handleMemberChange = (e)=>{
-  //   setMember(e.target.value)
-  //   // setMemberId(e.target.name)
-  //   // console.log(e);
-  // };
-  // const handleClickOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleCloseD = () => {
-  //   setOpen(false);
-  // };
-
-  // const assignBug = async (e) => {
-  //   setOpen(false);
-  //   e.preventDefault();
-  //   await axios({
-  //     method: "POST",
-  //     url: `${process.env.REACT_APP_API_URL}/projects/${id}/bugs/6246b0556b72f930184a3b04`,
-  //     headers: {
-  //       Authorization: `Bearer ${user.jwtToken}`,
-  //     },
-  //     data: {
-  //       user: member,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (!res.data.error) {
-  //         toast.success(res.data.message);
-  //       } else {
-  //         toast.error(res.data.message);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       toast.error(err.response.data.message);
-  //     });
-  // };
   const handleResolveBug = (bug)=>{
     setBugId(bug);
 
@@ -126,7 +79,7 @@ export default function AssignedBugs(props) {
 
   return (
     <>
-      <Container className={classes.root}>
+      
         {/* <div>
           <Button
             startIcon={<AssignmentInd />}
@@ -163,42 +116,45 @@ export default function AssignedBugs(props) {
             </DialogActions>
           </Dialog>
         </div> */}
-
-        <Box m={4}>
-          <TableContainer component={Paper}>
+        <Container className={classes.tablePaper}>
+          <Box m={4}>
+          <TableContainer component={Paper} >
             <Table>
-              <TableHead className={classes.tableHead}>
+              <TableHead >
                 <TableRow>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Bug Title</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Bug Description</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Priority</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Assigned To</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Deadline</b>
                   </TableCell>
-                  <TableCell></TableCell>
+                  <TableCell className={classes.tableHeader}></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {assignedBugs.slice(page * row, page * row + row).map((bug) => (
                   <TableRow>
-                    <TableCell><Link to={`/project/${id}/bug/${bug._id}`}>{bug.title}</Link></TableCell>
-                    <TableCell>{bug.description}</TableCell>
-                    <TableCell>{bug.priority}</TableCell>
-                    <TableCell>{bug.assignedTo.name}</TableCell>
-                    <TableCell>{bug.deadline.slice(0, 10)}</TableCell>
-                    <TableCell>
-                      <button key={bug._id+'7'} className="btn btn-dark" onClick={()=>handleResolveBug(bug._id)}>
+                    <TableCell className={classes.tableBodyText}><Link to={`/project/${id}/bug/${bug._id}`}>{bug.title}</Link></TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.description}</TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.priority}</TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.assignedTo.name}</TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.deadline.slice(0, 10)}</TableCell>
+                    <TableCell className={classes.tableBodyText}>
+                    <Button variant="contained" onClick={()=>handleResolveBug(bug._id)} color="primary" className={classes.requestCommitButton}>
+                      <AddIcon /> Request To Commit
+                    </Button>
+                      {/* <button key={bug._id+'7'} className="btn btn-dark" onClick={()=>handleResolveBug(bug._id)}>
                         Request To Commit
-                      </button>
+                      </button> */}
                     </TableCell>
                   </TableRow>
                 ))}

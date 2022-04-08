@@ -21,7 +21,8 @@ import {
   Select,
   MenuItem,
 } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+// import { makeStyles } from "@material-ui/core/styles";
+import { useProjectMemberStyles } from "../../CSS/muiStyles";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -33,22 +34,11 @@ import clsx from "clsx";
 import AssignmentInd from "@material-ui/icons/AssignmentInd";
 import { ToastContainer, toast } from "react-toastify";
 
-const useStyles = makeStyles((them) => {
-  return {
-    root: {},
-    tableHead: {
-      backgroundColor: "#cbd1cc",
-      fontWeight: "bold",
-    },
-    createProjectButton: {
-      color: "white",
-    },
-  };
-});
 
 export default function OpenBugs(props) {
+  const classes = useProjectMemberStyles();
   const { id } = useParams();
-  const classes = useStyles();
+  // const classes = useStyles();
   const [openBugs, setOpenBugs] = useState([]);
   const [page, setPage] = useState(0);
   const [row, setRow] = useState(5);
@@ -123,44 +113,52 @@ export default function OpenBugs(props) {
 
   return (
     <>
-      <Container className={classes.root}>
-        <Link to={`/bugs/${id}`} className={clsx("btn btn-primary")}>
+      {/* <Container > */}
+        {/* <Link to={`/bugs/${id}`} className={clsx("btn btn-primary")}>
           <Button
             startIcon={<AddIcon />}
             className={classes.createProjectButton}
           >
             Add Bug
           </Button>
-        </Link>
-        <Box m={4}>
-          <TableContainer component={Paper}>
+        </Link> */}
+        <Container className={classes.rootPaper}>
+        <div>
+        <Button variant="contained" href={`/bugs/${id}`} color="primary" className={classes.createProjectButton}>
+          <AddIcon /> Add Bug
+        </Button>
+        </div>
+        </Container>
+        <Container className={classes.tablePaper}>
+          <Box m={4}>
+          <TableContainer component={Paper} >
             <Table>
-              <TableHead className={classes.tableHead}>
+              <TableHead >
                 <TableRow>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Bug Title</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Bug Description</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Priority</b>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className={classes.tableHeader}>
                     <b>Deadline</b>
                   </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
+                  <TableCell className={classes.tableHeader}></TableCell>
+                  <TableCell className={classes.tableHeader}></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {openBugs.slice(page * row, page * row + row).map((bug) => (
                   <TableRow id={bug._id}>
-                    <TableCell><Link to={`/project/${id}/bug/${bug._id}`}>{bug.title}</Link></TableCell>
-                    <TableCell>{bug.description}</TableCell>
-                    <TableCell>{bug.priority}</TableCell>
-                    <TableCell>{bug.deadline.slice(0, 10)}</TableCell>
-                    <TableCell>
+                    <TableCell className={classes.tableBodyText}><Link to={`/project/${id}/bug/${bug._id}`}>{bug.title}</Link></TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.description}</TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.priority}</TableCell>
+                    <TableCell className={classes.tableBodyText}>{bug.deadline.slice(0, 10)}</TableCell>
+                    <TableCell className={classes.tableBodyText}>
                       {/* <button className="btn btn-dark">
                         Request To Commit
                       </button> */}
@@ -215,8 +213,10 @@ export default function OpenBugs(props) {
               onChangeRowsPerPage={(event) => setRow(event.target.value)}
             />
           </TableContainer>
+
         </Box>
-      </Container>
+        </Container>
+      {/* </Container> */}
     </>
   );
 }

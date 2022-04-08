@@ -19,6 +19,7 @@ import { useSelector } from 'react-redux'
 import clsx from "clsx";
 import { ToastContainer, toast } from "react-toastify";
 import DateFnsUtils from '@date-io/date-fns';
+import { useFormStyles } from "../../CSS/muiStyles";
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
@@ -46,59 +47,60 @@ const MenuProps = {
     };
   }
 
-const useStyles = makeStyles((theme) => ({
-    root : {
-        backgroundColor : "white"
-    },
-    inputField: {
-        width: "350px",
-        marginTop: "20px"
-    },
-    dateField: {
-        width: "175px",
-        marginTop: "20px",
-        marginRight: "5px",
-        marginBottom: "20px"
-    },
-    formGrid: {
-        display: "flex",
-        justifyItems: "center",
-    },
-    formContainer: {
-        display: "flex",
-        justifyContent: "center",
-    },
-    formControl: {
-        margin: theme.spacing(1),
-        minWidth: 120,
-        maxWidth: 300,
-      },
-      chips: {
-        display: 'flex',
-        flexWrap: 'wrap',
-      },
-      chip: {
-        margin: 2,
-      },
-      noLabel: {
-        marginTop: theme.spacing(3),
-      },
-      imageGrid: {
-        display : "flex",
-        justifyContent : "center",
-        margin : "auto"
-      },
-      projectImage : {
-          margin : "auto"
-      },
+// const useStyles = makeStyles((theme) => ({
+//     root : {
+//         backgroundColor : "white"
+//     },
+//     inputField: {
+//         width: "350px",
+//         marginTop: "20px"
+//     },
+//     dateField: {
+//         width: "175px",
+//         marginTop: "20px",
+//         marginRight: "5px",
+//         marginBottom: "20px"
+//     },
+//     formGrid: {
+//         display: "flex",
+//         justifyItems: "center",
+//     },
+//     formContainer: {
+//         display: "flex",
+//         justifyContent: "center",
+//     },
+//     formControl: {
+//         margin: theme.spacing(1),
+//         minWidth: 120,
+//         maxWidth: 300,
+//       },
+//       chips: {
+//         display: 'flex',
+//         flexWrap: 'wrap',
+//       },
+//       chip: {
+//         margin: 2,
+//       },
+//       noLabel: {
+//         marginTop: theme.spacing(3),
+//       },
+//       imageGrid: {
+//         display : "flex",
+//         justifyContent : "center",
+//         margin : "auto"
+//       },
+//       projectImage : {
+//           margin : "auto"
+//       },
       
-}))
+// }))
 
 const CreateProject = () => {
 
     const user = useSelector((state) => state.authReducer);
-    const classes = useStyles();
-    
+    // const classes = useStyles();
+    const classes = useFormStyles();
+
     const [projectName, setProjectName] = useState({value : "", visited : false});
     const [clientName, setClientName] = useState({value : "", visited : false});
     const [description, setDescription] = useState({value : "", visited : false});
@@ -190,7 +192,7 @@ const CreateProject = () => {
     return (
         <>
             <ToastContainer />
-            <Container className={classes.root}>
+            <Container className={classes.rootPaper}>
                 <Grid container>
                     <Grid item xs="12" sm="12" md="6" lg="6" xl="6" className={classes.formGrid} >
                         <form onSubmit={createProject}>
@@ -274,6 +276,7 @@ const CreateProject = () => {
                                     </FormControl>
                                 </Grid>
                                 <Grid item xs="12" className={classes.formContainer}>
+                                    <div className={classes.formFilled}>
                                     <FormControl className={clsx(classes.formControl,classes.inputField)}>
                                         <InputLabel id="demo-mutiple-chip-label">Members</InputLabel>
                                         <Select
@@ -301,9 +304,13 @@ const CreateProject = () => {
                                             ))}
                                         </Select>
                                     </FormControl>
+                                    </div>
                                 </Grid>
                                 <Grid item xs="12" className={classes.formContainer}>
-                                    <Button type='submit' variant='contained' color='primary'>Create</Button>
+                                    <Button type='submit' variant="contained" color="primary" className={classes.createProjectButton}>
+                                        Create
+                                    </Button>
+                                    {/* <Button type='submit' variant='contained' color='primary'>Create</Button> */}
                                 </Grid>
                             </Grid>
                         </form>
