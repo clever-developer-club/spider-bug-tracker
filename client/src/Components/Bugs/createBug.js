@@ -26,59 +26,60 @@ import {
 import ProjectImage from "../../Assets/Images/CreateProject.jpg";
 import { Link, useParams } from "react-router-dom";
 import {useNavigate} from "react-router-dom";
+import { useFormStyles } from "../../CSS/muiStyles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: "white",
-  },
-  inputField: {
-    width: "350px",
-    marginTop: "20px",
-  },
-  dateField: {
-    width: "175px",
-    marginTop: "20px",
-    marginRight: "5px",
-    marginBottom: "20px",
-  },
-  formGrid: {
-    display: "flex",
-    justifyItems: "center",
-  },
-  formContainer: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
-    maxWidth: 300,
-  },
-  chips: {
-    display: "flex",
-    flexWrap: "wrap",
-  },
-  chip: {
-    margin: 2,
-  },
-  noLabel: {
-    marginTop: theme.spacing(3),
-  },
-  imageGrid: {
-    display: "flex",
-    justifyContent: "center",
-    margin: "auto",
-  },
-  projectImage: {
-    margin: "auto",
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     backgroundColor: "white",
+//   },
+//   inputField: {
+//     width: "350px",
+//     marginTop: "20px",
+//   },
+//   dateField: {
+//     width: "175px",
+//     marginTop: "20px",
+//     marginRight: "5px",
+//     marginBottom: "20px",
+//   },
+//   formGrid: {
+//     display: "flex",
+//     justifyItems: "center",
+//   },
+//   formContainer: {
+//     display: "flex",
+//     justifyContent: "center",
+//   },
+//   formControl: {
+//     margin: theme.spacing(1),
+//     minWidth: 120,
+//     maxWidth: 300,
+//   },
+//   chips: {
+//     display: "flex",
+//     flexWrap: "wrap",
+//   },
+//   chip: {
+//     margin: 2,
+//   },
+//   noLabel: {
+//     marginTop: theme.spacing(3),
+//   },
+//   imageGrid: {
+//     display: "flex",
+//     justifyContent: "center",
+//     margin: "auto",
+//   },
+//   projectImage: {
+//     margin: "auto",
+//   },
+// }));
 
 const CreateBug = () => {
   const user = useSelector((state) => state.authReducer);
   const { id } = useParams();
   console.log(id)
-  const classes = useStyles();
+  const classes = useFormStyles();
 
   const [bugName, setBugName] = useState({ value: "", visited: false });
   const [description, setDescription] = useState({ value: "", visited: false });
@@ -172,7 +173,7 @@ const CreateBug = () => {
   return (
     <>
       <ToastContainer />
-      <Container className={classes.root}>
+      <Container className={classes.rootPaper}>
         <Grid container>
           <Grid
             item
@@ -225,7 +226,7 @@ const CreateBug = () => {
                   />
                 </Grid>
                 <Grid item xs="1.5">
-                  <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                  <MuiPickersUtilsProvider utils={DateFnsUtils} fullWidth={true}>
                     <KeyboardDatePicker
                       disableToolbar
                       variant="inline"
@@ -256,7 +257,8 @@ const CreateBug = () => {
                                 </Grid> */}
                 <Grid item xs="12" className={classes.formContainer}>
                   <FormControl
-                    className={clsx(classes.formControl, classes.inputField)}
+                    className={clsx(classes.formControl, classes.inputField)} 
+                    fullWidth={true}
                   >
                     <InputLabel id="demo-mutiple-chip-label">Priority</InputLabel>
                     {/* <Select
@@ -331,9 +333,12 @@ const CreateBug = () => {
                   </FormControl>
                 </Grid> */}
                 <Grid item xs="12" className={classes.formContainer}>
-                  <Button type="submit" variant="contained" color="primary">
-                    Create
+                  <Button type='submit' variant="contained" color="primary" className={classes.createProjectButton}>
+                      Create
                   </Button>
+                  {/* <Button type="submit" variant="contained" color="primary">
+                    Create
+                  </Button> */}
                 </Grid>
               </Grid>
             </form>

@@ -31,36 +31,37 @@ import CommentOutlinedIcon from "@material-ui/icons/CommentOutlined";
 
 import clsx from "clsx";
 import PropTypes from "prop-types";
+import {useBugDetailsStyles} from '../../CSS/muiStyles';
 // import SwipeableViews from 'react-swipeable-views';
 // import ProjectMembers from './ProjectMembers';
 // import OpenBugs from './OpenBugs';
 // import AssignedBugs from './AssignedBugs';
 // import ResolveBugs from './ResolveBugs';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: "20px",
-  },
-  menu: {
-    marginTop: "80px",
-  },
-  menuItem: {
-    textDecoration: "none",
-    color: "black",
-  },
-  headerPaper: {
-    // padding: '0.8em 1.5em',
-    marginBottom: "1em",
-    // display: 'flex',
-    alignItems: "center",
-  },
-  second: {
-    // padding: '0.8em 1.5em',
-    marginTop: "2em",
-    // display: 'flex',
-    // alignItems: 'center',
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     marginTop: "20px",
+//   },
+//   menu: {
+//     marginTop: "80px",
+//   },
+//   menuItem: {
+//     textDecoration: "none",
+//     color: "black",
+//   },
+//   headerPaper: {
+//     // padding: '0.8em 1.5em',
+//     marginBottom: "1em",
+//     // display: 'flex',
+//     alignItems: "center",
+//   },
+//   second: {
+//     // padding: '0.8em 1.5em',
+//     marginTop: "2em",
+//     // display: 'flex',
+//     // alignItems: 'center',
+//   },
+// }));
 
 // const TabPanel = (props) => {
 //     const { children, value, index, ...other } = props;
@@ -102,10 +103,11 @@ const BugDetails = () => {
   const [bug, setBug] = useState([]);
   const [members, setMembers] = useState({});
   const [loading, setLoading] = useState(false);
-  const classes = useStyles();
+  const classes = useBugDetailsStyles();
   const [value, setValue] = React.useState(0);
   const [message, setMessage] = React.useState("");
   const [open, setOpen] = React.useState(false);
+  // const [loading, setLoading] = useState(false);
   const theme = useTheme();
 
   // console.log(bid);
@@ -181,7 +183,7 @@ const BugDetails = () => {
     <>
       <ToastContainer />
       {loading ? (
-        <Container className={classes.root}>
+        <Container className={classes.rootPaper}>
           <Grid container>
             {/* <Paper className={classes.headerPaper} > */}
             <Grid item xs={12} lg={12}>

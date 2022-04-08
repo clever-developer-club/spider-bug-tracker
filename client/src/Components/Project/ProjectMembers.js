@@ -28,6 +28,7 @@ import {
 } from "@material-ui/core";
 
 import axios from "axios";
+// import {useStyles} from '../CSS/muiStyles';
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { filter } from "lodash";
@@ -59,6 +60,7 @@ function getStyles(name, personName, theme) {
 
 
 export default function ProjectMembers(props) {
+  // const classes = useStyles();
   const classes = useProjectMemberStyles();
   const { id } = useParams();
   const [project, setProject] = useState();
@@ -166,37 +168,17 @@ export default function ProjectMembers(props) {
 
   return (
     <>
-      <Container className={classes.root}>
-        {/* <Link to="/bugs" className={clsx("btn btn-primary")}><Button startIcon={<AddIcon />} className={classes.createProjectButton}>Add Bug</Button></Link> */}
-
+      <Container className={classes.rootPaper}>
+        
         <div>
           <Button variant="contained" onClick={handleClickOpen} color="primary" className={classes.createProjectButton}>
             <AddIcon /> ADD MEMBER
           </Button>
-          {/* <Button
-            startIcon={<AddIcon />}
-            className={classes.createProjectButton}
-            onClick={handleClickOpen}
-          >
-            Add Member
-          </Button> */}
+          
           <Dialog open={open} onClose={handleClose2}>
             <DialogTitle>Add Member</DialogTitle>
             <DialogContent>
-              {/* <DialogContentText>
-                Select Members Which you want to add.
-              </DialogContentText> */}
-              {/* <TextField
-                autoFocus
-                margin="dense"
-                id="name"
-                label="Email Address"
-                type="email"
-                fullWidth
-                variant="standard"
-              /> */}
-
-              {/* <FormControl className={clsx(classes.formControl,classes.inputField)}> */}
+              
               <InputLabel id="demo-mutiple-chip-label">Members</InputLabel>
               <Select
                 labelId="demo-mutiple-chip-label"
@@ -243,16 +225,18 @@ export default function ProjectMembers(props) {
             </DialogActions>
           </Dialog>
         </div>
-
+        </Container>
+        
+        <Container className={classes.tablePaper}>
         <Box m={4}>
-          <TableContainer component={Paper}>
+          <TableContainer component={Paper} >
             <Table>
               <TableHead className={classes.tableHead}>
                 <TableRow>
-                  <TableCell>Member Name</TableCell>
-                  <TableCell>Member Email</TableCell>
-                  <TableCell>Role</TableCell>
-                  <TableCell>Joined Date</TableCell>
+                  <TableCell className={classes.tableHeader}>Member Name</TableCell>
+                  <TableCell className={classes.tableHeader}>Member Email</TableCell>
+                  <TableCell className={classes.tableHeader}>Role</TableCell>
+                  <TableCell className={classes.tableHeader}>Joined Date</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -261,10 +245,10 @@ export default function ProjectMembers(props) {
                       .slice(page * row, page * row + row)
                       .map((member) => (
                         <TableRow id={member._id}>
-                          <TableCell>{member.name}</TableCell>
-                          <TableCell>{member.email}</TableCell>
-                          <TableCell>{member.role}</TableCell>
-                          <TableCell>{member.createdAt.slice(0, 10)}</TableCell>
+                          <TableCell className={classes.tableBodyText}>{member.name}</TableCell>
+                          <TableCell className={classes.tableBodyText}>{member.email}</TableCell>
+                          <TableCell className={classes.tableBodyText}>{member.role}</TableCell>
+                          <TableCell className={classes.tableBodyText}>{member.createdAt.slice(0, 10)}</TableCell>
                         </TableRow>
                       ))
                   : null}
@@ -279,6 +263,7 @@ export default function ProjectMembers(props) {
               onChangeRowsPerPage={(event) => setRow(event.target.value)}
             />
           </TableContainer>
+
         </Box>
       </Container>
     </>
