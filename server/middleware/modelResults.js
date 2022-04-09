@@ -101,7 +101,13 @@ module.exports = {
             
             let results = await query
 
-			// if(isRestricted) results = results.filter(project => project.hasMember(req.user._id));
+			// if(isRestricted){
+			// 	results = results.filter(project => {
+			// 		console.log(project.leads)
+			// 		console.log(project.leads.find(lead => lead._id == req.user._id.toString()))
+			// 		return project.leads.find(lead => lead._id == req.user._id) || project.members.find(member => member._id == req.user._id)
+			// 	});
+			// }
 
             res.results = {
                 err : false,

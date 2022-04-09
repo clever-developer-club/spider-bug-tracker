@@ -47,10 +47,11 @@ const useStyles = makeStyles((theme) => ({
   },
   email: {
     display: "flex",
+    justifyContent: "center",
     alignItems: "center",
     color: "#8a8a8a",
     margin: "10px",
-    justifyContent: "left",
+    // justifyContent: "left",
     fontFamily: "Georgia, serif",
     fontSize : "16px",
   },
@@ -130,7 +131,7 @@ const Profile = () => {
                   <EmailIcon style={{ marginRight: "10px" }} />
                     {userData.email}
                 </div>
-                <div className={classes.email}>
+                {/* <div className={classes.email}>
                   <GitHubIcon style={{ marginRight: "10px" }} />
                     {userData.githubUserName}
                 </div>
@@ -145,7 +146,7 @@ const Profile = () => {
                       Edit
                     </Button>
                   </Link>
-                </div>
+                </div> */}
               </CardContent>
             </Card>
           </div>

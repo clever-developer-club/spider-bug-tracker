@@ -119,6 +119,7 @@ const ProjectDetails = () => {
                   </Grid>
 
                   {/* <Grid item lg={2}> */}
+                  
                     <Button variant="outlined" href="/" color="primary" className={classes.exitProjectButton}>
                       <ExitToAppIcon className={classes.exitIcon} /> &nbsp;Home
                     </Button>
@@ -131,10 +132,10 @@ const ProjectDetails = () => {
 
               <Grid item xs={12} lg={12} className={classes.details}>
                 {/* <Grid item xs={12} sm={10} md={10} lg={10}> */}
-                  <Typography variant="p" >Client : {project.client}</Typography>
+                  <Typography variant="p" ><b>Client :</b> {project.client}</Typography>
                   <br />
                   <Typography variant="p" >
-                    Description : {project.description}
+                    <b>Description :</b> {project.description}
                   </Typography>
                 {/* </Grid> */}
               </Grid>
