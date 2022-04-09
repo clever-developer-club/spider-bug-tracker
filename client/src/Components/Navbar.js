@@ -102,6 +102,15 @@ const useStyles = makeStyles((theme) => ({
     },
     text : {
         color : "black",
+        textDecoration: "none",
+        padding: "0.5rem",
+        borderRadius: "8px",
+        "&:hover": {
+            color : "#1c688a",
+            backgroundColor: "#50a3d4",
+            textDecoration: "none",
+            // border: "1px solid #1c688a",
+        }
     }
 }));
 
@@ -152,15 +161,17 @@ const Navbar = ({ children }) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap className={classes.text}>
-                        Dashboard
-                    </Typography>
+                    <Link to="/" className={classes.text}>
+                        <Typography variant="h6" noWrap >
+                            Dashboard
+                        </Typography>
+                    </Link>
                     <div className={classes.navbarIcons}>
                         <Link to="/profile" >
-                        <IconButton>
-                            <AccountCircleIcon />
-                        </IconButton>
-                            </Link>
+                            <IconButton>
+                                <AccountCircleIcon />
+                            </IconButton>
+                        </Link>
                         <IconButton>
                             <PowerSettingsNewIcon onClick={handleLogOut}/>
                         </IconButton>

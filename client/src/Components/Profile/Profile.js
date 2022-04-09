@@ -22,6 +22,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import GitHubIcon from '@material-ui/icons/GitHub';
 import PhoneIcon from '@material-ui/icons/Phone';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 // import logo from "../../assets/shopping.gif";
 // import { useHistory } from "react-router-dom";
 
@@ -77,6 +78,22 @@ const useStyles = makeStyles((theme) => ({
   imgDiv: {
     padding: "10px",
   },
+  exitProjectButton: {
+    color : "#2d91bd",
+    border: "1px solid #2d91bd",
+    // display: "flex",
+    marginLeft: "auto",
+    // backgroundColor: "#2d91bd",
+    "&:hover": {
+        // color : "white",
+        // backgroundColor: "#1c688a",
+        color : "#1c688a",
+        border: "1px solid #1c688a",
+    }
+  },
+  exitIcon: {
+      transform: "rotate(180deg)",
+  },
 }));
 
 const Profile = () => {
@@ -104,7 +121,16 @@ const Profile = () => {
 
     return (
       <div className={classes.body}>
+      <div style={{display:"flex",flexDirection:"row-reverse", padding: "20px"}}>
+        <div>
+        <Button variant="outlined" href="/" color="primary" className={classes.exitProjectButton}>
+            <ExitToAppIcon className={classes.exitIcon} /> Back
+          </Button>
+        </div>
+      </div>
+      
         <Container className={classes.root}>
+          
           <div className={classes.cardDiv}>
             <Card className={classes.card}>
               <CardActionArea className={classes.imgDiv}>

@@ -27,7 +27,8 @@ import AssignedBugs from "./AssignedBugs";
 import ResolveBugs from "./ResolveBugs";
 import {useStyles} from '../../CSS/muiStyles';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp'
-
+import Delete from '@material-ui/icons/Delete'
+import {useNavigate} from "react-router-dom";
 
 
 const TabPanel = (props) => {
@@ -73,6 +74,25 @@ const ProjectDetails = () => {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const theme = useTheme();
+  const nevigate=useNavigate()
+
+  const deleteProject =()=>{
+    axios({
+      method: "DELETE",
+      url: `${process.env.REACT_APP_API_URL}/projects/${id}`,
+      headers: {
+        Authorization: `Bearer ${user.jwtToken}`,
+      },
+    })
+      .then(() => {
+        // toast.success(res.response.statusText);
+        nevigate("/", {replace : true}); 
+      })
+      .catch((err) => {
+        // console.log(err.response.state)
+        toast.error(err.response.statusText);
+      });
+  }
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -111,19 +131,22 @@ const ProjectDetails = () => {
           <Container className={classes.rootPaper}>
             <Grid container>
               <Grid item xs={12} lg={12}>
-                <Grid container>
-                  <Grid item xs={12} sm={10} md={10} lg={10}>
+                <Grid container spacing={2}>
+                  <Grid item xs={10} sm={10} md={10} lg={10} >
                     <Typography variant="h4" className={classes.title}>
                       {project.name}
                     </Typography>
                   </Grid>
-
-                  {/* <Grid item lg={2}> */}
-                  
+                  <Grid item lg={1} xs={1} sm={1} md={1} >
+                    <Button variant="outlined" color="primary" className={classes.exitProjectButton} onClick={deleteProject}>
+                      <Delete/> &nbsp;Del
+                    </Button>
+                  </Grid>
+                  <Grid item lg={1} xs={1} sm={1} md={1} >
                     <Button variant="outlined" href="/" color="primary" className={classes.exitProjectButton}>
                       <ExitToAppIcon className={classes.exitIcon} /> &nbsp;Home
                     </Button>
-                  {/* </Grid> */}
+                  </Grid>
                 </Grid>
               </Grid>
               
