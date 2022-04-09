@@ -28,10 +28,12 @@ import {
 } from "@material-ui/core";
 import ForumOutlinedIcon from "@material-ui/icons/ForumOutlined";
 import CommentOutlinedIcon from "@material-ui/icons/CommentOutlined";
+import AssignmentIcon from '@material-ui/icons/BugReport';
 
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import {useBugDetailsStyles} from '../../CSS/muiStyles';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp'
 // import SwipeableViews from 'react-swipeable-views';
 // import ProjectMembers from './ProjectMembers';
 // import OpenBugs from './OpenBugs';
@@ -183,36 +185,65 @@ const BugDetails = () => {
     <>
       <ToastContainer />
       {loading ? (
+        <div>
+        {/* <Container className={classes.rootPaper}>
+          <Grid container>
+          <Typography variant="h5" className={classes.titlebar}>
+            <AssignmentIcon className={classes.titleicon} fontSize="large"/>&nbsp;Bug Details
+          </Typography>
+          <Button variant="outlined" href={`/project/${id}`} color="primary" className={classes.exitProjectButton}>
+            <ExitToAppIcon className={classes.exitIcon} /> &nbsp;Back
+          </Button>
+          </Grid>
+        </Container> */}
         <Container className={classes.rootPaper}>
           <Grid container>
+          {/* <Button variant="outlined" href={`/project/${id}`} color="primary" className={classes.exitProjectButton}>
+            <ExitToAppIcon className={classes.exitIcon} /> &nbsp;Back
+          </Button> */}
             {/* <Paper className={classes.headerPaper} > */}
-            <Grid item xs={12} lg={12}>
+            {/* <Grid item xs={12} lg={12}> */}
               <Grid container>
-                <Grid item xs={12} sm={10} md={10} lg={10}>
-                  <Typography variant="h4">Bug Title : {bug.title}</Typography>
-                </Grid>
-                <Grid item xs={12} sm={2} md={2} lg={2}>
-                  <Link to={`/project/${id}`} className="btn btn-primary">
-                    Exit
-                  </Link>
-                </Grid>
+                {/* <Grid item xs={12} sm={10} md={10} lg={10}> */}
+                    <Typography variant="h4" className={classes.titlebar}>
+                    <AssignmentIcon className={classes.titleicon} fontSize="large"/>&nbsp;{bug.title}
+                    </Typography>
+                    
+                    <Button variant="outlined" href={`/project/${id}`} color="primary" className={classes.exitProjectButton}>
+                    <ExitToAppIcon className={classes.exitIcon} /> &nbsp;Back
+                  </Button>
+                  {/* <Typography variant="h4">Bug Title : {bug.title}</Typography> */}
+                {/* </Grid> */}
+                
               </Grid>
-            </Grid>
+              
+            {/* </Grid> */}
+            
             <Grid item xs={12} lg={12}>
               <Grid item xs={12} sm={10} md={10} lg={10}>
-                <Typography variant="h6">Priority : {bug.priority}</Typography>
+                  <Typography Typography variant="p" >Priority : {bug.priority}</Typography>
+                  <br />
+                  <Typography variant="p" >
+                    Description : {bug.description}
+                  </Typography>
+                {/* <Typography variant="h6">Priority : {bug.priority}</Typography>
                 <Typography variant="h6">
                   Description : {bug.description}
-                </Typography>
+                </Typography> */}
               </Grid>
             </Grid>
             <Divider />
           </Grid>
+          </Container>
+        <Container className={classes.rootPaper}>
 
-          <Grid container className={classes.second}>
-            <Grid item xs={12} lg={12}>
+          {/* <Grid container > */}
+            {/* <Grid item xs={12} lg={12}> */}
               <div>
-                <Typography
+              <Typography variant="h5" className={classes.detailsbar}>
+                <ForumOutlinedIcon fontSize="large"/>&nbsp;Notes
+              </Typography>
+                {/* <Typography
                   variant="h5"
 
                   //   className={classes.flexHeader}
@@ -222,28 +253,28 @@ const BugDetails = () => {
                     style={{ marginRight: "0.2em" }}
                   />
                   Notes
-                </Typography>
+                </Typography> */}
               </div>
-            </Grid>
-          </Grid>
+            {/* </Grid> */}
+          {/* </Grid> */}
 
-          <Grid container className={classes.second}>
-            <Grid item xs={12} lg={12}>
+          <Grid container >
+            {/* <Grid item xs={12} lg={12}> */}
               <div>
                 <Button
-                  startIcon={<CommentOutlinedIcon />}
+                  // startIcon={<CommentOutlinedIcon />}
                   className={classes.createProjectButton}
                   onClick={handleClickOpen}
                 >
-                  Leave A Note
+                  <CommentOutlinedIcon />&nbsp;Leave A Note
                 </Button>
                 <Dialog open={open} onClose={handleClose2}>
-                  <DialogTitle>Leave A Note</DialogTitle>
+                  <DialogTitle>Leave a Note</DialogTitle>
                   <DialogContent>
                     {/* <FormControl className={clsx(classes.formControl,classes.inputField)}> */}
-                    <InputLabel id="demo-mutiple-chip-label">
+                    {/* <InputLabel id="demo-mutiple-chip-label">
                       Leave A Note
-                    </InputLabel>
+                    </InputLabel> */}
                     <TextField
                       multiline
                       rows={2}
@@ -264,7 +295,7 @@ const BugDetails = () => {
                   </DialogActions>
                 </Dialog>
               </div>
-            </Grid>
+            {/* </Grid> */}
           </Grid>
 
           <Grid container className={classes.second}>
@@ -286,73 +317,45 @@ const BugDetails = () => {
                 )}
                 {bug.comments.map((n) => (
                   <div key={n.id}>
-                    <div >
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      p: 1,
+                      m: 1,
+                      bgcolor: 'background.paper',
+                      borderRadius: 1,
+                    }}
+                  >
+                    
+                    <div>
                       <Avatar>
                         {n.author.name.slice(0, 1)}
                       </Avatar>
-                      <div>
-                        <Typography color="secondary" variant="caption">
-                          {n.author.name}
-                        </Typography>
-                        <Typography color="secondary" variant="caption">
-                          <em> • at {n.createdAt.slice(0,10)}</em>
-                        </Typography>
-                        {/* {n.updatedAt !== n.createdAt && ( */}
-                          <Typography color="secondary" variant="caption">
-                            {" "}
-                            • time <em>{n.createdAt.slice(11,16)} </em>
-                          </Typography>
-                        {/* )} */}
-                        <Typography
-                          color="secondary"
-                          variant="subtitle1"
-                          className={classes.noteBody}
-                        >
-                          {n.text}
-                        </Typography>
-                        {/* <div className={classes.notesBtnWrapper}>
-                          {n.author.id === user?.id && (
-                            <FormDialog
-                              triggerBtn={{
-                                type: "normal",
-                                text: "Edit",
-                                icon: EditIcon,
-                                variant: "outlined",
-                                size: "small",
-                                style: { marginRight: "1em" },
-                                color: "secondary",
-                              }}
-                              title="Edit the note"
-                            >
-                              <NoteForm
-                                isEditMode={true}
-                                projectId={projectId}
-                                bugId={bugId}
-                                noteId={n.id}
-                                currentBody={n.body}
-                              />
-                            </FormDialog>
-                          )}
-                          {(n.author.id === user?.id ||
-                            user?.id === project?.createdBy.id) && (
-                            <ConfirmDialog
-                              title="Confirm Delete Note"
-                              contentText="Are you sure you want to delete the note?"
-                              actionBtnText="Delete Note"
-                              triggerBtn={{
-                                type: "normal",
-                                text: "Delete",
-                                icon: DeleteIcon,
-                                variant: "outlined",
-                                size: "small",
-                                color: "secondary",
-                              }}
-                              actionFunc={() => handleDeleteNote(n.id)}
-                            />
-                          )}
-                        </div> */}
-                      </div>
                     </div>
+                    <div className={classes.noteStyle}>
+                      <Typography  variant="caption" className={classes.noteDetails}>
+                        {n.author.name}
+                      </Typography>
+                      <Typography className={classes.noteDetails} variant="caption">
+                        <em> • at {n.createdAt.slice(0,10)}</em>
+                      </Typography>
+                      {/* {n.updatedAt !== n.createdAt && ( */}
+                        <Typography className={classes.noteDetails} variant="caption">
+                          {" "}
+                          • time <em>{n.createdAt.slice(11,16)} </em>
+                        </Typography>
+                      {/* )} */}
+                      <Typography
+                        
+                        variant="subtitle1"
+                        className={classes.noteBody}
+                      >
+                        {n.text}
+                      </Typography>
+                    </div>
+                      </Box>
+                    
                     <Divider />
                   </div>
                 ))}
@@ -360,9 +363,11 @@ const BugDetails = () => {
             </Grid>
           </Grid>
         </Container>
-      ) : (
-        <CircularProgress disableShrink size={80} />
-      )}
+        </div>
+      ) : <div className={classes.fullPage}>
+          <CircularProgress className={classes.loader} disableShrink size={40} /> 
+        </div>
+      }
     </>
   );
 };

@@ -63,11 +63,11 @@ export default function AssignedBugs(props) {
         if (!res.data.error) {
           toast.success(res.data.message);
         } else {
-           toast.error(res.data.message);
+          //  toast.error(res.data.message);
         }
       })
       .catch( (err) => {
-        toast.error(err.response.data.message);
+        // toast.error(err.response.data.message);
       });
   }
 
