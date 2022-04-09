@@ -3,6 +3,12 @@ const Bug = require("../models/Bug")
 
 module.exports = {
 
+	filterProjects: async(req,res,next) => {
+		res.results.data = res.results.data.filter(project => project.hasMember(req.user._id));
+		res.results.metadata.count = res.results.data.length
+		next();
+	},
+
 	checkPublicBugPermissions: async (req,res,next) => {
 		if(res.locals.bug && res.locals.bug.isPublic()){
 			next()
