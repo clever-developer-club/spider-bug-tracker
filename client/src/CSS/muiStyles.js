@@ -348,7 +348,6 @@ export const useBugDetailsStyles = makeStyles(
             textAlign: 'center',
         },
         tableBodyText: {
-
             textAlign: 'center',
         },
         createProjectButton : {

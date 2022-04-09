@@ -24,6 +24,7 @@ import { logOut } from '../Redux/Helpers/authHelper';
 import {useNavigate} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import {Link} from "react-router-dom"
+import logo from "../Assets/Images/logo2.png";
 
 const drawerWidth = 240;
 
@@ -111,6 +112,14 @@ const useStyles = makeStyles((theme) => ({
             textDecoration: "none",
             // border: "1px solid #1c688a",
         }
+    },
+    navbarStyle: {
+        // maxheight: "10px",
+        // marginLeft: "5em",
+        maxWidth: "85%",
+        marginLeft: "8%",
+        color: "#292f33",
+
     }
 }));
 
@@ -152,31 +161,36 @@ const Navbar = ({ children }) => {
                 })}
                 
             >
+                <div className={classes.navbarStyle}>
                 <Toolbar>
-                    <IconButton
+                    {/* <IconButton
                         aria-label="open drawer"
                         // onClick={handleDrawerOpen}
                         edge="start"
                         className={clsx(classes.menuButton, open && classes.hide)}
                     >
                         <MenuIcon />
-                    </IconButton>
-                    <Link to="/" className={classes.text}>
-                        <Typography variant="h6" noWrap >
-                            Dashboard
-                        </Typography>
+                    </IconButton> */}
+                    <Link to="/" >
+                        <div >
+                            <img src={logo} height="35px" ></img>
+                            {/* <Typography variant="h6" noWrap >
+                                Spider Bug Tracker
+                            </Typography> */}
+                        </div>
                     </Link>
                     <div className={classes.navbarIcons}>
                         <Link to="/profile" >
                             <IconButton>
-                                <AccountCircleIcon />
+                                <AccountCircleIcon style={{color: "#292f33"}}/>
                             </IconButton>
                         </Link>
                         <IconButton>
-                            <PowerSettingsNewIcon onClick={handleLogOut}/>
+                            <PowerSettingsNewIcon style={{color: "#292f33"}} onClick={handleLogOut}/>
                         </IconButton>
                     </div>
                 </Toolbar>
+                </div>
             </AppBar>
             <Drawer
                 className={classes.drawer}
