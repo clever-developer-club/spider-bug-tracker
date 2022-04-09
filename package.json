@@ -20,5 +20,7 @@
     "url": "https://github.com/clever-developer-club/spider-bug-tracker/issues"
   },
   "homepage": "https://github.com/clever-developer-club/spider-bug-tracker#readme",
-  "dependencies": {}
+  "dependencies": {
+    "react-scripts": "^5.0.0"
+  }
 }
