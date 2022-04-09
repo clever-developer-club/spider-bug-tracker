@@ -6,12 +6,14 @@ import loginImage from "../../Assets/Images/test5.svg";
 import EmailIcon from '@material-ui/icons/Email';
 import LockIcon from '@material-ui/icons/Lock';
 import axios from 'axios';
-import { setAuthDetails } from "../../Redux/Helpers/authHelper";
+// import { setAuthDetails } from "../../Redux/Helpers/authHelper";
 import { useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 import { useSelector } from "react-redux";
+import queryString from 'query-string';
+import {setAuthDetails,setJWTToken,setUser} from '../../Redux/Helpers/authHelper'
 
-const Login = () => {
+const Login = (props) => {
 
     const [email, setEmail] = useState("fkzinr@midiharmonica.com");
     const [password, setPassword] = useState("abcd1234");
@@ -56,11 +58,41 @@ const Login = () => {
     }
     console.log(user);
 
+    // useEffect(() => {
+    //     if (user.jwtToken !== "") {
+    //         navigate("/", { replace: true })
+    //     }
+    // }, [])
     useEffect(() => {
-        if (user.jwtToken !== "") {
-            navigate("/", { replace: true })
-        }
-    }, [])
+
+        // if (user.jwtToken !== "") {
+        //             navigate("/", { replace: true })
+        //         }
+
+		let asyncFunction = async () => {
+			let queryObj = queryString.parse(window.location.search)
+    		if(queryObj.activation){
+      			toast.success("Activation successful.");
+    		}else if(queryObj.reset){
+      			toast.success("Password Reset Successful.");
+    		}else if(queryObj.error){
+      			toast.error(queryObj.error);
+    		}else if(queryObj.token){
+      			setJWTToken(queryObj.token)
+				const {data} = await axios({
+					method : "GET",
+					url : `${process.env.REACT_APP_API_URL}/auth/user`,
+					headers : {
+						Authorization: `Bearer ${queryObj.token}`
+					}
+				})
+				setUser(data.data)
+     	 		// history.push("/");
+                  navigate("/", { replace: true })
+    		}
+	}
+	asyncFunction()
+  },[])
 
     return <>
         <div>
