@@ -47,10 +47,12 @@ export default function AssignedBugs(props) {
   // const [memberid, setMemberId] = useState();
   const user = useSelector((state) => state.authReducer);
 
-  const handleResolveBug = (bug)=>{
+  const handleResolveBug = async(bug)=>{
     setBugId(bug);
 
-    axios({
+    console.log(`${process.env.REACT_APP_API_URL}/projects/${id}/bugs/${bugid}`)
+
+   await axios({
       method: "PATCH",
       url: `${process.env.REACT_APP_API_URL}/projects/${id}/bugs/${bugid}`,
       headers: {
@@ -63,11 +65,11 @@ export default function AssignedBugs(props) {
         if (!res.data.error) {
           toast.success(res.data.message);
         } else {
-           toast.error(res.data.message);
+          //  toast.error(res.data.message);
         }
       })
       .catch( (err) => {
-        toast.error(err.response.data.message);
+        // toast.error(err.response.data.message);
       });
   }
 
