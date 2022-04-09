@@ -6,6 +6,7 @@ const { getDocuments, getDocumentbyId } = require('../middleware/modelResults')
 const { setProjectasResource } = require('../middleware/paramHelpers')
 const { projectMemberMiddleware, projectLeadMiddleware } = require('../middleware/middlewareComposer')
 const { projectPopulate } = require('../utils/populateObjects')
+const { filterProjects } = require('../middleware/userPermission')
 
 const router = express.Router()
 
@@ -13,7 +14,9 @@ router.route("/")
     .get(
 		getDocuments(
             Project,
-			projectPopulate
+			projectPopulate,
+			null,
+			true
         ),
         projectCtrl.getProjects
     )

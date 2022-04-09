@@ -48,8 +48,8 @@ module.exports = {
         next()
     },
 
-    getDocuments : (model,populate,filter) => async (req,res,next) => {
-
+    getDocuments : (model,populate,filter,isRestricted) => async (req,res,next) => {
+		
         try{
 			
             let reqQuery = { 
@@ -99,7 +99,9 @@ module.exports = {
                 query = query.populate(populate)
             }
             
-            const results = await query
+            let results = await query
+
+			if(isRestricted) results = results.filter(project => project.hasMember(req.user._id));
 
             res.results = {
                 err : false,
