@@ -12,7 +12,8 @@ import {
     Select,
     Chip,
     useTheme, 
-    Button
+    Button,
+    Typography
 } from '@material-ui/core'
 import axios from 'axios'
 import { useSelector } from 'react-redux'
@@ -249,6 +250,7 @@ const CreateProject = () => {
                                         className={classes.dateField}
                                         error={duration.value === "" && duration.visited === true ? true : false}
                                         required
+                                        InputProps={{ endAdornment: <Typography>Months</Typography> }}
                                     />
                                 </Grid>
                                 <Grid item xs="12" className={classes.formContainer}>
