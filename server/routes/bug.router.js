@@ -45,7 +45,7 @@ const bugRouter = (type) => {
 			bugCtrl.assignBug
 		)
 		.patch(
-			creatorMiddleware,
+			baseMiddleware,
 			bugCtrl.updateBug
 		).delete(
 			creatorMiddleware,

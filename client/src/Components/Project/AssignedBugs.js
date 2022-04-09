@@ -47,10 +47,12 @@ export default function AssignedBugs(props) {
   // const [memberid, setMemberId] = useState();
   const user = useSelector((state) => state.authReducer);
 
-  const handleResolveBug = (bug)=>{
+  const handleResolveBug = async(bug)=>{
     setBugId(bug);
 
-    axios({
+    console.log(`${process.env.REACT_APP_API_URL}/projects/${id}/bugs/${bugid}`)
+
+   await axios({
       method: "PATCH",
       url: `${process.env.REACT_APP_API_URL}/projects/${id}/bugs/${bugid}`,
       headers: {

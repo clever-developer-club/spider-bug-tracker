@@ -101,7 +101,7 @@ module.exports = {
             
             let results = await query
 
-			if(isRestricted) results = results.filter(project => project.hasMember(req.user._id));
+			// if(isRestricted) results = results.filter(project => project.hasMember(req.user._id));
 
             res.results = {
                 err : false,
