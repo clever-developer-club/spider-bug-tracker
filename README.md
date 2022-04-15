@@ -38,12 +38,13 @@ Spider Bug Tracker is Web application for tracking the bugs during software deve
 
 #### Desktop
 
-![Desktop-1](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/Add%20Project.png)
-![Desktop-2]()
-![Desktop-3]()
-![Desktop-4]()
-![Desktop-5]()
-
+![Desktop-1](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/Project%20Details.png)
+![Desktop-2](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/Add%20Project.png)
+![Desktop-3](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/Project%20Details.png)
+![Desktop-4](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/open%20bug.png)
+![Desktop-5](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/assign%20bug.png)
+![Desktop-6](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/resolve%20bug.png)
+![Desktop-7](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/Bug%20Details.png)
 
 ## Usage
 
