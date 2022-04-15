@@ -38,7 +38,7 @@ Spider Bug Tracker is Web application for tracking the bugs during software deve
 
 #### Desktop
 
-![Desktop-1]()
+![Desktop-1](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/Add%20Project.png)
 ![Desktop-2]()
 ![Desktop-3]()
 ![Desktop-4]()
