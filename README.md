@@ -31,7 +31,7 @@ Spider Bug Tracker is Web application for tracking the bugs during software deve
 -Project Lead can assign a bug to a developer.\
 -Project Lead can assign bugs to the developers and discuss in a particular bug section.\
 -Developer can see all the bugs related to that project.\
--Developers can see how many total bugs are assigned to them.\ 
+-Developers can see how many total bugs are assigned to them.
 
 
 ## Screenshots
