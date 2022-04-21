@@ -17,7 +17,7 @@ Spider Bug Tracker is Web application for tracking the bugs during software deve
 
 - [Node.js](https://nodejs.org/en/) - Runtime environment for JS
 - [Express.js](https://expressjs.com/) - Node.js framework, makes process of building APIs easier & faster
-- [PostgreSQL](https://www.postgresql.org/) - Opens-source SQL database to store data
+- [MongoDB](https://www.mongodb.com/) - MongoDB is an open-source document database and leading NoSQL database.
 - [TypeORM](https://typeorm.io/) - TS-based ORM for mostly SQL-based databases
 - [JSON Web Token](https://jwt.io/) - A standard to secure/authenticate HTTP requests
 - [Bcrypt.js](https://www.npmjs.com/package/bcryptjs) - For hashing passwords
@@ -35,8 +35,6 @@ Spider Bug Tracker is Web application for tracking the bugs during software deve
 
 
 ## Screenshots
-
-#### Desktop
 
 ![Desktop-1](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/Project%20Details.png)
 ![Desktop-2](https://github.com/clever-developer-club/spider-bug-tracker/blob/main/client/src/Assets/Screenshots/Add%20Project.png)
